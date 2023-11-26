@@ -37,8 +37,8 @@ Each `output.json`` has a list of dict containing instances for evaluation ().
     {
         "id": "validation_Electronics_29",
         "question_type": "short-answer",
-        "answer": "30",
-        "response": "36 watts"
+        "answer": "30", # given answer
+        "response": "36 watts" # model response
     },
     ...
 ]
