@@ -11,17 +11,17 @@ if __name__ == '__main__':
 
     parser = ArgumentParser()
     parser.add_argument('--path', type=str, default="./example_outputs/llava1.5_13b", help="The path to model output directory.")
-    parser.add_argument('--categories', nargs='+',
+    parser.add_argument('--subject', nargs='+',
                         help=f'The name of the mmmu sub-category. Availble: {CAT_SHORT2LONG.keys()} or ALL')
 
     args = parser.parse_args()
-    if args.categories[0] == 'ALL':
-        args.categories = CAT_SHORT2LONG.keys()
+    if args.subject[0] == 'ALL':
+        args.subject = CAT_SHORT2LONG.keys()
     
     ex_output_path = os.path.join(args.path)
 
     all_results = {}
-    for cat_short in args.categories:
+    for cat_short in args.subject:
         category = CAT_SHORT2LONG[cat_short]
         print("Evaluating: {}".format(category))
         if category not in os.listdir(ex_output_path):

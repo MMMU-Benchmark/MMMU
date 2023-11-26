@@ -1,5 +1,6 @@
 # Evaluation Guidelines
-We provide detailed instructions for evalaution
+We provide detailed instructions for evalaution. 
+To execute our evaluation script, please ensure that the structure of your output files from your model same as ours.
 ### Output folder structure
 
 ```
@@ -45,11 +46,11 @@ Each `output.json`` has a list of dict containing instances for evaluation ().
 
 ### Evaluate
 ```
-python main_eval.py --path ./example_outputs/llava1.5_13b --categories elec # short name for Electronics. use --help for all short names
+python main_eval.py --path ./example_outputs/llava1.5_13b --subject ALL # all subject
 
-# OR you can simply sepecify categories as ALL for all categories evaluation
+# OR you can sepecify one subject for the evaluation
 
-python main_eval.py --path ./example_outputs/llava1.5_13b --categories ALL # all categories
+python main_eval.py --path ./example_outputs/llava1.5_13b --subject elec # short name for Electronics. use --help for all short names
 
 ```
 

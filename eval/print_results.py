@@ -2,11 +2,8 @@
 
 import os
 from typing import Dict
-
 import json
 import numpy as np
-import pandas as pd
-import argparse
 from tabulate import tabulate
 
 from argparse import ArgumentParser
@@ -14,7 +11,7 @@ from argparse import ArgumentParser
 from data_utils import CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
 
 def calculate_ins_level_acc(results: Dict):
-    """Calculate the instruction level accuracy for given category results"""
+    """Calculate the instruction level accuracy for given Subject results"""
     acc = 0
     ins_num = 0
     for cat_results in results.values():
@@ -35,14 +32,16 @@ def main():
     for cat_folder_name in os.listdir(args.path):
         if cat_folder_name in CAT_SHORT2LONG.values():
             cat_folder_path = os.path.join(args.path, cat_folder_name)
-            cat_results = json.load(open(os.path.join(cat_folder_path, 'result.json')))
-            all_results[cat_folder_name] = cat_results
+            result_path = os.path.join(cat_folder_path, 'result.json')
+            if os.path.exists(result_path):
+                cat_results = json.load(open(result_path))
+                all_results[cat_folder_name] = cat_results
 
     # print results
-    headers = ['Category', 'Data Num', 'Acc']
+    headers = ['Subject', 'Data Num', 'Acc']
     table = []
 
-    # add domain category
+    # add domain Subject
     for domain, in_domain_cats in DOMAIN_CAT2SUB_CAT.items():
         in_domain_cat_results = {}
         for cat_name in in_domain_cats: # use the order in DOMAIN_CAT2SUB_CAT
