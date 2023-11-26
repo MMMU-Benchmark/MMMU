@@ -45,7 +45,7 @@ Each `output.json`` has a list of dict containing instances for evaluation ().
 
 ### Evaluate
 ```
-python main_eval.py --path ./example_outputs/llava1.5_13b --categories acc # short name for accounting
+python main_eval.py --path ./example_outputs/llava1.5_13b --categories elec # short name for Electronics. use --help for all short names
 
 # OR you can simply sepecify categories as ALL for all categories evaluation
 

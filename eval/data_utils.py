@@ -27,7 +27,7 @@ CAT_SHORT2LONG = {
     'design': 'Design',
     'diag_med': 'Diagnostics_and_Laboratory_Medicine',
     'econ': 'Economics',
-    'ee': 'Electronics',
+    'elec': 'Electronics',
     'ep': 'Energy_and_Power',
     'fin': 'Finance',
     'geo': 'Geography',
