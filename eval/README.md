@@ -26,10 +26,10 @@ Each `output.json`` has a list of dict containing instances for evaluation ().
             "D"
         ],
         "index2ans": { # create using `get_multi_choice_info` in 
-            "A": "75 + 13.3 cos(250t - 57.7\u00b0)V",
-            "B": "75 + 23.3 cos(250t - 57.7\u00b0)V",
-            "C": "45 + 3.3 cos(250t - 57.7\u00b0)V",
-            "D": "95 + 13.3 cos(250t - 57.7\u00b0)V"
+            "A": "75 + 13.3 cos(250t - 57.7°)V",
+            "B": "75 + 23.3 cos(250t - 57.7°)V",
+            "C": "45 + 3.3 cos(250t - 57.7°)V",
+            "D": "95 + 13.3 cos(250t - 57.7°)V"
         },
         "response": "B" # model response
     },

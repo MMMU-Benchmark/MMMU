@@ -1,6 +1,5 @@
 """Utils for data load, save, and process (e.g., prompt construction)"""
 
-import os
 import json
 
 DOMAIN_CAT2SUB_CAT = {
