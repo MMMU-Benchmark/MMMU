@@ -40,6 +40,8 @@ Please refer to our [eval](eval)
 | Frequent Choice            |    22.1   |     23.9     |
 | Random Choice              |    26.8   |     25.8     |
 
+**We only release the full set of 150 dev and 900 validation questions. The dev set can be used for few-shot / in-context learning and the validation set is used to debug models, select hyperparameters, have a quick evaluation, etc. We only release the questions in the test set but hide the answers and explanations. To submit your model’s prediction on the test set, please contact us. An automatic submission system and a leaderboard will be released very soon.**
+
 To submit your model's performance on the leaderboard, please [contact](#contact) us.
 
 ## Disclaimers
