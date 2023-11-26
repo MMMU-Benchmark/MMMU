@@ -10,7 +10,7 @@ from eval_utils import evaluate, parse_multi_choice_response, parse_open_respons
 if __name__ == '__main__':
 
     parser = ArgumentParser()
-    parser.add_argument('--path', type=str, default="./example_outputs/blip2_flant5xxl", help="The path to model output directory.")
+    parser.add_argument('--path', type=str, default="./example_outputs/llava1.5_13b", help="The path to model output directory.")
     parser.add_argument('--categories', nargs='+',
                         help=f'The name of the mmmu sub-category. Availble: {CAT_SHORT2LONG.keys()} or ALL')
 
