@@ -19,7 +19,7 @@ MMMU was created to challenge multimodal models with tasks that demand college-l
 Please refer to our [eval](eval)
  folder for more details.
 
-## Mini-Leaderboard
+## 🏆 Mini-Leaderboard
 | Model                      | Val (900) | Test (10.5K) |
 |----------------------------|:---------:|:------------:|
 | GPT-4V(ision) (Playground) |    **56.8**   |     **55.7**     |
@@ -40,9 +40,7 @@ Please refer to our [eval](eval)
 | Frequent Choice            |    22.1   |     23.9     |
 | Random Choice              |    26.8   |     25.8     |
 
-**We only release the full set of 150 dev and 900 validation questions. The dev set can be used for few-shot / in-context learning and the validation set is used to debug models, select hyperparameters, have a quick evaluation, etc. We only release the questions in the test set but hide the answers and explanations. To submit your model’s prediction on the test set, please contact us. An automatic submission system and a leaderboard will be released very soon.**
-
-To submit your model's performance on the leaderboard, please [contact](#contact) us.
+🎯 **We have released a full suite comprising 150 development samples and 900 validation samples. However, the 10,500 test questions are available without their answers.** Use the development set for few-shot/in-context learning, and the validation set for debugging models, selecting hyperparameters, and quick evaluations. The answers and explanations for the test set questions are withheld. To submit your model's predictions for the **test set**, please [contact](#Contact) us. An automated submission system and leaderboard are upcoming. Stay tuned!
 
 ## Disclaimers
 The guidelines for the annotators emphasized strict compliance with copyright and licensing rules from the initial data source, specifically avoiding materials from websites that forbid copying and redistribution. 
