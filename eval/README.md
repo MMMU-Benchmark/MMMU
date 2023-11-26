@@ -68,7 +68,7 @@ python main_eval.py --path ./example_outputs/blip2_flant5xxl --categories ALL # 
 ```
 
 ### Print Results
-You may want to print results locally if you want. (use `pip install tabulate` if you haven't)
+You can print results locally if you want. (use `pip install tabulate` if you haven't)
 ```
 python print_results.py --path ./example_outputs/blip2_flant5xxl
 ```
