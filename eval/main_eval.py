@@ -39,7 +39,7 @@ if __name__ == '__main__':
                     parsed_pred = parse_multi_choice_response(response, all_choices, index2ans)
                     eval_samples.append(
                         {
-                            'No': cat_output['No'],
+                            'id': cat_output['id'],
                             'question_type': cat_output['question_type'],
                             'answer': cat_output['answer'], # the content in option, not answer index.
                             'response': response,
@@ -51,7 +51,7 @@ if __name__ == '__main__':
                     parsed_pred = parse_open_response(response)
                     eval_samples.append(
                         {
-                            'No': cat_output['No'],
+                            'id': cat_output['id'],
                             'question_type': cat_output['question_type'],
                             'answer': cat_output['answer'],
                             'response': response,
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             judge_dict, metric_dict = evaluate(eval_samples)
             metric_dict.update({"num_example": len(eval_samples)})
             for eval_sample in eval_samples:
-                eval_sample.update({"judge": judge_dict[eval_sample['No']]})
+                eval_sample.update({"judge": judge_dict[eval_sample['id']]})
 
             save_json(os.path.join(cat_folder_path, 'parsed_output.json'), eval_samples)
             save_json(os.path.join(cat_folder_path, 'result.json'), metric_dict)

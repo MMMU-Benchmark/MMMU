@@ -229,10 +229,10 @@ def evaluate(samples):
             correct = eval_open(gold_i, pred_i)
 
         if correct:
-            judge_dict[sample['No']] = 'Correct'
+            judge_dict[sample['id']] = 'Correct'
             pred_correct += 1
         else:
-            judge_dict[sample['No']] = 'Wrong'
+            judge_dict[sample['id']] = 'Wrong'
 
     if len(samples) == 0:
         return {'acc': 0}

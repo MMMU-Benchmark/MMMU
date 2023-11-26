@@ -12,32 +12,32 @@ We provide detailed instructions for evalaution
 ```
 
 ### Output file
-Each `output.json`` has a list of dict containing instances for evaluation.
+Each `output.json`` has a list of dict containing instances for evaluation ().
 ```
 [
     {
-        "No": "1",
+        "id": "validation_Electronics_28",
         "question_type": "multiple-choice",
-        "answer": "C", # given answer
-        "all_choices": [ # create using `get_multi_choice_info` in data_utils.py with given options
+        "answer": "A", # given answer
+        "all_choices": [ # create using `get_multi_choice_info` in 
             "A",
             "B",
             "C",
             "D"
         ],
-        "index2ans": { # create using `get_multi_choice_info` in data_utils.py with given options
-            "A": "$6,000",
-            "B": "$6,150",
-            "C": "$6,090",
-            "D": "$6,060"
+        "index2ans": { # create using `get_multi_choice_info` in 
+            "A": "75 + 13.3 cos(250t - 57.7\u00b0)V",
+            "B": "75 + 23.3 cos(250t - 57.7\u00b0)V",
+            "C": "45 + 3.3 cos(250t - 57.7\u00b0)V",
+            "D": "95 + 13.3 cos(250t - 57.7\u00b0)V"
         },
-        "response": "(A)" # model response
+        "response": "B" # model response
     },
     {
-        "No": "18",
-        "question_type": "open",
-        "answer": "8.4",  # given answer
-        "response": "V_CEQ" # model response
+        "id": "validation_Electronics_29",
+        "question_type": "short-answer",
+        "answer": "30",
+        "response": "36 watts"
     },
     ...
 ]
@@ -45,11 +45,11 @@ Each `output.json`` has a list of dict containing instances for evaluation.
 
 ### Evaluate
 ```
-python main_eval.py --path ./example_outputs/blip2_flant5xxl --categories acc # short name for accounting
+python main_eval.py --path ./example_outputs/llava1.5_13b --categories acc # short name for accounting
 
 # OR you can simply sepecify categories as ALL for all categories evaluation
 
-python main_eval.py --path ./example_outputs/blip2_flant5xxl --categories ALL # all categories
+python main_eval.py --path ./example_outputs/llava1.5_13b --categories ALL # all categories
 
 ```
 
@@ -70,5 +70,6 @@ python main_eval.py --path ./example_outputs/blip2_flant5xxl --categories ALL # 
 ### Print Results
 You can print results locally if you want. (use `pip install tabulate` if you haven't)
 ```
-python print_results.py --path ./example_outputs/blip2_flant5xxl
+python print_results.py --path ./example_outputs/llava1.5_13b
+# Results may be slightly different due to the ramdon selection for fail response
 ```
