@@ -14,7 +14,7 @@ We introduce MMMU: a new benchmark designed to evaluate multimodal models on mas
 
 ## Dataset Creation
 
-MMMU was created to challenge multimodal models with tasks that demand college-level subject knowledge and deliberate reasoning, pushing the boundaries of what these models can achieve in terms of expert-level perception and reasoning. Please refer to our huggingface [**🤗 Dataset**](https://arxiv.org/abs/XX) for more details.
+MMMU was created to challenge multimodal models with tasks that demand college-level subject knowledge and deliberate reasoning, pushing the boundaries of what these models can achieve in terms of expert-level perception and reasoning. Please refer to our huggingface [**🤗 Dataset**](https://huggingface.co/datasets/MMMU/MMMU/) for more details.
 
 ## Evaluation
 Please refer to our [eval](eval)
