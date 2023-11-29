@@ -1,9 +1,10 @@
 # MMMU 
 
-[**🤗 Dataset**](https://arxiv.org/abs/XX) | [**📖 Paper**](https://arxiv.org/abs/XX) | [**GitHub**](https://github.com/MMMU-Benchmark/MMMU) | [**🌐 Homepage**](https://mmmu-benchmark.github.io/)
+[**🌐 Homepage**](https://mmmu-benchmark.github.io/) | [**🤗 Dataset**](https://huggingface.co/datasets/MMMU/MMMU/) | [**🤗 Paper**](https://huggingface.co/papers/2311.16502) | [**📖 arXiv**](https://arxiv.org/pdf/2311.16502.pdf) | [**GitHub**](https://github.com/MMMU-Benchmark/MMMU)
 
 
-This repo contains evaluation code for the paper "MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI"
+
+This repo contains the evaluation code for the paper "MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI"
 
 
 ## Introduction
@@ -57,8 +58,8 @@ Should you encounter any data samples potentially breaching the copyright or lic
 ```bibtex
 @article{yue2023mmmu,
   title={MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI},
-  author={Yue, Xiang and Ni, Yuansheng and Zhang, Kai and Zheng, Tianyu and Liu, Ruoqi and Zhang, Ge and Jiang, Dongfu and Ren, Weiming and Yang, Zhenzhu and Sun, Renliang and Zheng, Boyuan and Stevens, Samuel and Yuan, Ruibin and Yu, Botao and Sun, Yuxuan and Liu, Yibo and Wei, Cong and Yin, Ming and Huang, Wenhao and Sun, Huan and Su, Yu and Chen, Wenhu},
-  journal={arXiv preprint Link},
+  author={Xiang Yue and Yuansheng Ni and Kai Zhang and Tianyu Zheng and Ruoqi Liu and Ge Zhang and Samuel Stevens and Dongfu Jiang and Weiming Ren and Yuxuan Sun and Cong Wei and Botao Yu and Ruibin Yuan and Renliang Sun and Ming Yin and Boyuan Zheng and Zhenzhu Yang and Yibo Liu and Wenhao Huang and Huan Sun and Yu Su and Wenhu Chen},
+  journal={arXiv preprint arXiv:2311.16502},
   year={2023},
 }
 ```
