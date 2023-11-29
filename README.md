@@ -4,7 +4,7 @@
 
 
 
-This repo contains the evaluation code for the paper "MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI"
+This repo contains the evaluation code for the paper "[MMMU: A Massive Multi-discipline Multimodal Understanding and Reasoning Benchmark for Expert AGI](https://arxiv.org/pdf/2311.16502.pdf)"
 
 
 ## Introduction
