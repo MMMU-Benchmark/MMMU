@@ -97,3 +97,5 @@ You can provide all the outputs in one file in the following format:
 ```
 python main_eval_only.py --output_path ./example_outputs/llava1.5_13b/total_val_output.json
 ```
+
+Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/eval/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
