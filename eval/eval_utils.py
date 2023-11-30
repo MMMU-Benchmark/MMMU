@@ -1,4 +1,6 @@
 """Response Parsing and Evaluation for various models"""
+from typing import Dict
+
 import re
 import random
 random.seed(42)
@@ -237,3 +239,18 @@ def evaluate(samples):
     if len(samples) == 0:
         return {'acc': 0}
     return judge_dict, {'acc': pred_correct / len(samples)}
+
+
+
+# ----------- Calculate Accuracy -------------
+def calculate_ins_level_acc(results: Dict):
+    """Calculate the instruction level accuracy for given Subject results"""
+    acc = 0
+    ins_num = 0
+    for cat_results in results.values():
+        acc += cat_results['acc'] * cat_results['num_example']
+        ins_num += cat_results['num_example']
+    if ins_num == 0:
+        return 0
+    return acc / ins_num
+

@@ -1,4 +1,4 @@
-"""Evalate only"""
+"""Parse and Evalate"""
 import os
 import json
 from argparse import ArgumentParser

@@ -10,17 +10,7 @@ from argparse import ArgumentParser
 
 from data_utils import CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
 
-def calculate_ins_level_acc(results: Dict):
-    """Calculate the instruction level accuracy for given Subject results"""
-    acc = 0
-    ins_num = 0
-    for cat_results in results.values():
-        acc += cat_results['acc'] * cat_results['num_example']
-        ins_num += cat_results['num_example']
-    if ins_num == 0:
-        return 0
-    return acc / ins_num
-
+from eval_utils import calculate_ins_level_acc
 
 def main():
     parser = ArgumentParser()
