@@ -1,5 +1,5 @@
 # Evaluation Guidelines
-We provide detailed instructions for evalaution. 
+We provide detailed instructions for evaluation. 
 To execute our evaluation script, please ensure that the structure of your output files from your model same as ours.
 ### Output folder structure
 
