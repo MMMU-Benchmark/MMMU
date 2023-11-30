@@ -1,8 +1,29 @@
 # Evaluation Guidelines
 We provide detailed instructions for evaluation. 
 To execute our evaluation script, please ensure that the structure of your output files from your model same as ours.
+
+## Evaluation Only
+If you want to use your own parsing logic, you can use `main_eval_only.py`.
+
+You can provide all the outputs in one file in the following format:
+
+```
+{
+    "validation_Accounting_1": "D", # strictly "A", "B", "C", "D" for multi-choice question
+    "validation_Architecture_and_Engineering_14": "0.0", # any string response for open question.
+    ...
+}
+```
+Then run eval_only with:
+```
+python main_eval_only.py --output_path ./example_outputs/llava1.5_13b/total_val_output.json
+```
+
+Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/eval/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
+
+
 ## Parse and Evaluation
-You can provide response and run the `main_parse_and_eval.py` to use our answer parsing processing and evaluation pipeline as follows:
+You can also provide response and run the `main_parse_and_eval.py` to use our answer parsing processing and evaluation pipeline as follows:
 
 ### Output folder structure
 
@@ -78,24 +99,3 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 # Results may be slightly different due to the ramdon selection for fail response
 ```
 
-
-## EVALUATION Only
-If you want to use your own parsing logic, you can use `main_eval_only.py`.
-
-You can provide all the outputs in one file in the following format:
-
-```
-{
-    "validation_Accounting_1": "D", # strictly "A", "B", "C", "D" for multi-choice question
-    "validation_Architecture_and_Engineering_14": "0.0", # any string response for open question.
-    ...
-}
-```
-
-
-### Evaluation
-```
-python main_eval_only.py --output_path ./example_outputs/llava1.5_13b/total_val_output.json
-```
-
-Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/eval/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
