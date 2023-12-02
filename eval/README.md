@@ -3,9 +3,9 @@ We provide detailed instructions for evaluation.
 To execute our evaluation script, please ensure that the structure of your output files from your model same as ours.
 
 ## Evaluation Only
-If you want to use your own parsing logic, you can use `main_eval_only.py`.
+If you want to use your own parsing logic and *only provide the final answer*, you can use `main_eval_only.py`.
 
-You can provide all the outputs in one file in the following format:
+You can provide all the outputs in *one file* in the following format:
 
 ```
 {
