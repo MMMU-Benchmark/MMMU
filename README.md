@@ -29,6 +29,7 @@ Please refer to our [eval](eval)
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
 | Qwen-VL-7B                 |    35.9   |     32.9     |
+| mPLUG-OWL2                 |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
 | InstructBLIP-T5-XL         |    32.9   |     30.6     |
 | CogVLM                     |    32.1   |     30.1     |
@@ -36,7 +37,6 @@ Please refer to our [eval](eval)
 | LLaMA-Adapter2-7B          |    29.8   |     27.7     |
 | MiniGPT4-Vicuna-13B        |    26.8   |     27.6     |
 | Fuyu-8B                    |    27.9   |     27.4     |
-| mPLUG-OWL2                 |    28.0   |     26.8     |
 | Kosmos2                    |    24.4   |     26.6     |
 | OpenFlamingo2-9B           |    28.7   |     26.3     |
 | Frequent Choice            |    22.1   |     23.9     |
