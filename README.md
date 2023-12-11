@@ -28,6 +28,7 @@ Please refer to our [eval](eval)
 |----------------------------|:---------:|:------------:|
 | Gemini Ultra               |    **59.4**   |     -            |
 | GPT-4V(ision) (Playground) |    56.8   |     **55.7**     |
+| Gemini Pro                 |    47.9   |     -            |
 | BLIP-2 FLAN-T5-XXL         |    35.4   |     34.0     |
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
@@ -41,6 +42,7 @@ Please refer to our [eval](eval)
 | MiniGPT4-Vicuna-13B        |    26.8   |     27.6     |
 | Fuyu-8B                    |    27.9   |     27.4     |
 | Kosmos2                    |    24.4   |     26.6     |
+| Gemini Nano2               |    26.3   |     -            |
 | OpenFlamingo2-9B           |    28.7   |     26.3     |
 | Frequent Choice            |    22.1   |     23.9     |
 | Random Choice              |    26.8   |     25.8     |
