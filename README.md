@@ -36,13 +36,13 @@ Please refer to our [eval](eval)
 | mPLUG-OWL2                 |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
 | InstructBLIP-T5-XL         |    32.9   |     30.6     |
+| Gemini Nano2               |    32.6   |     -        |
 | CogVLM                     |    32.1   |     30.1     |
 | Otter                      |    32.2   |     29.1     |
 | LLaMA-Adapter2-7B          |    29.8   |     27.7     |
 | MiniGPT4-Vicuna-13B        |    26.8   |     27.6     |
 | Fuyu-8B                    |    27.9   |     27.4     |
 | Kosmos2                    |    24.4   |     26.6     |
-| Gemini Nano2               |    26.3   |     -            |
 | OpenFlamingo2-9B           |    28.7   |     26.3     |
 | Frequent Choice            |    22.1   |     23.9     |
 | Random Choice              |    26.8   |     25.8     |
