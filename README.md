@@ -36,6 +36,7 @@ Please refer to our [eval](eval)
 | mPLUG-OWL2                 |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
 | InstructBLIP-T5-XL         |    32.9   |     30.6     |
+| SPHINX                     |    32.9   |     -        |
 | Gemini Nano2               |    32.6   |     -        |
 | CogVLM                     |    32.1   |     30.1     |
 | Otter                      |    32.2   |     29.1     |
