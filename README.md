@@ -49,6 +49,8 @@ Please refer to our [eval](eval)
 | Random Choice              |    26.8   |     25.8     |
 
 *: results provided by the authors.
+
+
 🎯 **We have released a full suite comprising 150 development samples and 900 validation samples. However, the 10,500 test questions are available without their answers.** Use the development set for few-shot/in-context learning, and the validation set for debugging models, selecting hyperparameters, and quick evaluations. The answers and explanations for the test set questions are withheld. You can submit your model's predictions for the **test set** on **[EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview)**.
 
 ## Disclaimers
