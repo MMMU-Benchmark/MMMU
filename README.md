@@ -26,18 +26,18 @@ Please refer to our [eval](eval)
 ## 🏆 Mini-Leaderboard
 | Model                      | Val (900) | Test (10.5K) |
 |----------------------------|:---------:|:------------:|
-| Gemini Ultra               |    **59.4**   |     -            |
+| Gemini Ultra*              |    **59.4**   |     -            |
 | GPT-4V(ision) (Playground) |    56.8   |     **55.7**     |
-| Gemini Pro                 |    47.9   |     -            |
+| Gemini Pro*                |    47.9   |     -            |
 | BLIP-2 FLAN-T5-XXL         |    35.4   |     34.0     |
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
 | Qwen-VL-7B                 |    35.9   |     32.9     |
-| mPLUG-OWL2                 |    32.7   |     32.1     |
+| mPLUG-OWL2*                |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
 | InstructBLIP-T5-XL         |    32.9   |     30.6     |
-| SPHINX                     |    32.9   |     -        |
-| Gemini Nano2               |    32.6   |     -        |
+| SPHINX*                    |    32.9   |     -        |
+| Gemini Nano2*              |    32.6   |     -        |
 | CogVLM                     |    32.1   |     30.1     |
 | Otter                      |    32.2   |     29.1     |
 | LLaMA-Adapter2-7B          |    29.8   |     27.7     |
@@ -48,6 +48,7 @@ Please refer to our [eval](eval)
 | Frequent Choice            |    22.1   |     23.9     |
 | Random Choice              |    26.8   |     25.8     |
 
+*: results provided by the authors.
 🎯 **We have released a full suite comprising 150 development samples and 900 validation samples. However, the 10,500 test questions are available without their answers.** Use the development set for few-shot/in-context learning, and the validation set for debugging models, selecting hyperparameters, and quick evaluations. The answers and explanations for the test set questions are withheld. You can submit your model's predictions for the **test set** on **[EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview)**.
 
 ## Disclaimers
