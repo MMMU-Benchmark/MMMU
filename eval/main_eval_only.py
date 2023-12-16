@@ -5,8 +5,8 @@ import json
 import pdb
 from argparse import ArgumentParser
 
-from data_utils import save_json, CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
-from eval_utils import evaluate, parse_multi_choice_response, parse_open_response, calculate_ins_level_acc
+from utils.data_utils import save_json, CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
+from utils.eval_utils import evaluate, parse_multi_choice_response, parse_open_response, calculate_ins_level_acc
 
 
 if __name__ == '__main__':

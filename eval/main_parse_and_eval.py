@@ -3,8 +3,8 @@ import os
 import json
 from argparse import ArgumentParser
 
-from data_utils import save_json, CAT_SHORT2LONG
-from eval_utils import evaluate, parse_multi_choice_response, parse_open_response
+from utils.data_utils import save_json, CAT_SHORT2LONG
+from utils.eval_utils import evaluate, parse_multi_choice_response, parse_open_response
 
 
 if __name__ == '__main__':

@@ -8,9 +8,9 @@ from tabulate import tabulate
 
 from argparse import ArgumentParser
 
-from data_utils import CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
+from utils.data_utils import CAT_SHORT2LONG, DOMAIN_CAT2SUB_CAT
 
-from eval_utils import calculate_ins_level_acc
+from utils.eval_utils import calculate_ins_level_acc
 
 def main():
     parser = ArgumentParser()

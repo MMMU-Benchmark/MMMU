@@ -99,3 +99,18 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 # Results may be slightly different due to the ramdon selection for fail response
 ```
 
+
+
+##### Run Llava
+In case if you want to reproduce the results of some of the models, please go check run_llava.py as an example.
+
+By seeting up the env following the [llava official repo](https://github.com/haotian-liu/LLaVA)
+Then run
+```
+CUDA_VISIBLE_DEVICES=0 nohup python run_llava.py \
+--output_path example_outputs/llava1.5_13b_val.json \
+--model_path liuhaotian/llava-v1.5-13b \
+--config_path configs/llava1.5.yaml
+```
+
+Then you can evaluate the results via the above pipelines.
