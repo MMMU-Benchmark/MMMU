@@ -1,11 +1,15 @@
 # Evaluation Guidelines
 We provide detailed instructions for evaluation. 
-To execute our evaluation script, please ensure that the structure of your output files from your model same as ours.
+To execute our evaluation script, please ensure that the structure of your model outputs is the same as ours.
+
+We provide two options:
+1. Evaluation only: you can parse the response on your own and simply provide one file with all the final predictions.
+2. Parse and evaluation: you can leave all the responses to us with the output formats shown below.
 
 ## Evaluation Only
-If you want to use your own parsing logic, you can use `main_eval_only.py`.
+If you want to use your own parsing logic and *only provide the final answer*, you can use `main_eval_only.py`.
 
-You can provide all the outputs in one file in the following format:
+You can provide all the outputs in *one file* in the following format:
 
 ```
 {

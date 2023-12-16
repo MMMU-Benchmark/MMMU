@@ -164,7 +164,7 @@
     {
         "id": "validation_Literature_10",
         "question_type": "multiple-choice",
-        "answer": "D",
+        "answer": "C",
         "all_choices": [
             "A",
             "B",
@@ -254,7 +254,7 @@
     {
         "id": "validation_Literature_15",
         "question_type": "multiple-choice",
-        "answer": "B",
+        "answer": "A",
         "all_choices": [
             "A",
             "B",

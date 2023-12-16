@@ -2203,7 +2203,7 @@
     },
     "validation_Literature_10": {
         "question_type": "multiple-choice",
-        "ground_truth": "D"
+        "ground_truth": "C"
     },
     "validation_Literature_11": {
         "question_type": "multiple-choice",
@@ -2223,7 +2223,7 @@
     },
     "validation_Literature_15": {
         "question_type": "multiple-choice",
-        "ground_truth": "B"
+        "ground_truth": "A"
     },
     "validation_Literature_16": {
         "question_type": "multiple-choice",
