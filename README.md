@@ -26,9 +26,10 @@ Please refer to our [eval](eval)
 ## 🏆 Mini-Leaderboard
 | Model                      | Val (900) | Test (10.5K) |
 |----------------------------|:---------:|:------------:|
-| Gemini Ultra*              |    **59.4**   |     -            |
-| GPT-4V(ision) (Playground) |    56.8   |     **55.7**     |
-| Gemini Pro*                |    47.9   |     -            |
+| Gemini Ultra*              |  **59.4** |     -        |
+| GPT-4V(ision) (Playground) |    56.8   |     **55.7** |
+| Gemini Pro*                |    47.9   |     -        |
+| Qwen-VL-PLUS*              |    45.2   |     40.8     |
 | BLIP-2 FLAN-T5-XXL         |    35.4   |     34.0     |
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
