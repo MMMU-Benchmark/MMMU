@@ -35,10 +35,10 @@ Please refer to our [eval](eval)
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
 | Qwen-VL-7B                 |    35.9   |     32.9     |
+| SPHINX*                    |    32.9   |     32.9     |
 | mPLUG-OWL2*                |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
 | InstructBLIP-T5-XL         |    32.9   |     30.6     |
-| SPHINX*                    |    32.9   |     -        |
 | Gemini Nano2*              |    32.6   |     -        |
 | CogVLM                     |    32.1   |     30.1     |
 | Otter                      |    32.2   |     29.1     |
