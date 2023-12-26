@@ -30,11 +30,12 @@ Please refer to our [eval](eval)
 | GPT-4V(ision) (Playground) |    56.8   |     **55.7** |
 | Gemini Pro*                |    47.9   |     -        |
 | Qwen-VL-PLUS*              |    45.2   |     40.8     |
-| Emu2-Chat*                 |     -     |     34.1     |
+| SVIT*                      |    38.0   |     34.1     |
+| Emu2-Chat*                 |    36.3   |     34.1     |
 | BLIP-2 FLAN-T5-XXL         |    35.4   |     34.0     |
 | InstructBLIP-T5-XXL        |    35.7   |     33.8     |
 | LLaVA-1.5-13B              |    36.4   |     33.6     |
-| Qwen-VL-7B                 |    35.9   |     32.9     |
+| Qwen-VL-7B-Chat            |    35.9   |     32.9     |
 | SPHINX*                    |    32.9   |     32.9     |
 | mPLUG-OWL2*                |    32.7   |     32.1     |
 | BLIP-2 FLAN-T5-XL          |    34.4   |     31.0     |
