@@ -61,7 +61,7 @@ The guidelines for the annotators emphasized strict compliance with copyright an
 Should you encounter any data samples potentially breaching the copyright or licensing regulations of any site, we encourage you to [contact](#contact) us. Upon verification, such samples will be promptly removed.
 
 ## Contact
-- Xiang Yue: xiangyue@in.ai
+- Xiang Yue: xiangyue.work@gmail.com
 - Yu Su: su.809@osu.edu
 - Wenhu Chen: wenhuchen@uwaterloo.ca
 
