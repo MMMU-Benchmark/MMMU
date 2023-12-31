@@ -29,6 +29,7 @@ Please refer to our [eval](eval)
 | Gemini Ultra*              |  **59.4** |     -        |
 | GPT-4V(ision) (Playground) |    56.8   |     **55.7** |
 | Gemini Pro*                |    47.9   |     -        |
+| Yi-VL-34B*                 |    45.9   |     41.6     |
 | Qwen-VL-PLUS*              |    45.2   |     40.8     |
 | SVIT*                      |    38.0   |     34.1     |
 | Emu2-Chat*                 |    36.3   |     34.1     |
