@@ -31,6 +31,7 @@ Please refer to our [eval](eval)
 | Gemini Pro*                |    47.9   |     -        |
 | Yi-VL-34B*                 |    45.9   |     41.6     |
 | Qwen-VL-PLUS*              |    45.2   |     40.8     |
+| InfiMM-Zephyr-7B*          |    39.4   |     35.5     |
 | SVIT*                      |    38.0   |     34.1     |
 | Emu2-Chat*                 |    36.3   |     34.1     |
 | BLIP-2 FLAN-T5-XXL         |    35.4   |     34.0     |
