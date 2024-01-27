@@ -32,8 +32,10 @@ Please refer to our [eval](eval)
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
 | Marco-VL*                  |   41.2    |     40.4     |
+| InternLM-XComposer2-VL*    |   43.0    |     38.2     |
 | Yi-VL-6B*                  |   39.1    |     37.8     |
 | InfiMM-Zephyr-7B*          |   39.4    |     35.5     |
+| InternVL*                  |   39.1    |     35.3     |
 | SVIT*                      |   38.0    |     34.1     |
 | Emu2-Chat*                 |   36.3    |     34.1     |
 | BLIP-2 FLAN-T5-XXL         |   35.4    |     34.0     |
