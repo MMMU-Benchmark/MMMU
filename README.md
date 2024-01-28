@@ -29,6 +29,7 @@ Please refer to our [eval](eval)
 | Gemini Ultra*              | **59.4**  |      -       |
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
+| Adept Fuyu-Heavy*          |   48.3    |      -       |
 | Gemini Pro*                |   47.9    |      -       |
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
@@ -52,7 +53,7 @@ Please refer to our [eval](eval)
 | Otter                      |   32.2    |     29.1     |
 | LLaMA-Adapter2-7B          |   29.8    |     27.7     |
 | MiniGPT4-Vicuna-13B        |   26.8    |     27.6     |
-| Fuyu-8B                    |   27.9    |     27.4     |
+| Adept Fuyu-8B              |   27.9    |     27.4     |
 | Kosmos2                    |   24.4    |     26.6     |
 | OpenFlamingo2-9B           |   28.7    |     26.3     |
 | Frequent Choice            |   22.1    |     23.9     |
