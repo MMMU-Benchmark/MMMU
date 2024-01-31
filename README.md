@@ -8,6 +8,7 @@ This repo contains the evaluation code for the paper "[MMMU: A Massive Multi-dis
 
 ## 🔔News
 
+- **🚀[2024-01-31]: We added Human Expert performance on the [Leaderboard](https://mmmu-benchmark.github.io/#leaderboard)!🌟**
 - **🔥[2023-12-04]: Our evaluation server for test set is now availble on [EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview). We welcome all submissions and look forward to your participation! 😆**
 
 ## Introduction
