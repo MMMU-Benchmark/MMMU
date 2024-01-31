@@ -26,6 +26,9 @@ Please refer to our [eval](eval)
 ## 🏆 Mini-Leaderboard
 | Model                      | Val (900) | Test (10.5K) |
 |----------------------------|:---------:|:------------:|
+| Expert (Best)              |   88.6    |      -       |
+| Expert (Medium)            |   82.6    |      -       |
+| Expert (Worst)             |   76.2    |      -       |
 | Gemini Ultra*              | **59.4**  |      -       |
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
