@@ -33,6 +33,7 @@ Please refer to our [eval](eval)
 | Gemini Ultra*              | **59.4**  |      -       |
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
+| LLaVA-1.6-34B*             |   51.1    |     44.7     |
 | Adept Fuyu-Heavy*          |   48.3    |      -       |
 | Gemini Pro*                |   47.9    |      -       |
 | Yi-VL-34B*                 |   45.9    |     41.6     |
