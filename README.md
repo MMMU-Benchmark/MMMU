@@ -39,15 +39,18 @@ Please refer to our [eval](eval)
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
 | Marco-VL*                  |   41.2    |     40.4     |
+| OmniLMM-12B*               |   41.1    |     40.4     |
 | InternLM-XComposer2-VL*    |   43.0    |     38.2     |
 | Yi-VL-6B*                  |   39.1    |     37.8     |
 | InfiMM-Zephyr-7B*          |   39.4    |     35.5     |
 | InternVL-Chat-V1.1*        |   39.1    |     35.3     |
 | SVIT*                      |   38.0    |     34.1     |
+| MiniCPM-V*                 |   37.2    |     34.1     |
 | Emu2-Chat*                 |   36.3    |     34.1     |
 | BLIP-2 FLAN-T5-XXL         |   35.4    |     34.0     |
 | InstructBLIP-T5-XXL        |   35.7    |     33.8     |
 | LLaVA-1.5-13B              |   36.4    |     33.6     |
+| Bunny*                     |   36.6    |     32.9     |
 | Qwen-VL-7B-Chat            |   35.9    |     32.9     |
 | SPHINX*                    |   32.9    |     32.9     |
 | mPLUG-OWL2*                |   32.7    |     32.1     |
