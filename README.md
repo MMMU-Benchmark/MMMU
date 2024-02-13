@@ -50,7 +50,7 @@ Please refer to our [eval](eval)
 | BLIP-2 FLAN-T5-XXL         |   35.4    |     34.0     |
 | InstructBLIP-T5-XXL        |   35.7    |     33.8     |
 | LLaVA-1.5-13B              |   36.4    |     33.6     |
-| Bunny*                     |   36.6    |     32.9     |
+| Bunny-3B*                  |   38.2    |     33.0     |
 | Qwen-VL-7B-Chat            |   35.9    |     32.9     |
 | SPHINX*                    |   32.9    |     32.9     |
 | mPLUG-OWL2*                |   32.7    |     32.1     |
