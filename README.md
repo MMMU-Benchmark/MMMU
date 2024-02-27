@@ -34,6 +34,7 @@ Please refer to our [eval](eval)
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
 | InternVL-Chat-V1.2*        |   51.6    |     46.2     |
+| Reka Flash*                |   51.3    |      -       |
 | LLaVA-1.6-34B*             |   51.1    |     44.7     |
 | Adept Fuyu-Heavy*          |   48.3    |      -       |
 | Gemini Pro*                |   47.9    |      -       |
