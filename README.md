@@ -41,6 +41,7 @@ Please refer to our [eval](eval)
 | Claude 3 Haiku*            |   50.2    |      -       |
 | Adept Fuyu-Heavy*          |   48.3    |      -       |
 | Gemini Pro*                |   47.9    |      -       |
+| Marco-VL-Plus*             |   46.2    |     44.3     |
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
 | Marco-VL*                  |   41.2    |     40.4     |
