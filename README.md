@@ -34,6 +34,7 @@ Please refer to our [eval](eval)
 | Claude 3 Opus*             | **59.4**  |      -       |
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
 | Claude 3 Sonnet*           |   53.1    |      -       |
+| HPT Pro*                   |   52.0    |      -       |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
 | InternVL-Chat-V1.2*        |   51.6    |     46.2     |
 | Reka Flash*                |   51.3    |      -       |
@@ -44,6 +45,7 @@ Please refer to our [eval](eval)
 | Marco-VL-Plus*             |   46.2    |     44.3     |
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
+| HPT Air*                   |   44.0    |      -       |
 | Marco-VL*                  |   41.2    |     40.4     |
 | OmniLMM-12B*               |   41.1    |     40.4     |
 | InternLM-XComposer2-VL*    |   43.0    |     38.2     |
