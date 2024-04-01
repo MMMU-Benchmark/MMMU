@@ -48,6 +48,7 @@ Please refer to our [eval](eval)
 | HPT Air*                   |   44.0    |      -       |
 | Marco-VL*                  |   41.2    |     40.4     |
 | OmniLMM-12B*               |   41.1    |     40.4     |
+| Weitu-VL-1.0-15B*          |     -     |     38.4     |
 | InternLM-XComposer2-VL*    |   43.0    |     38.2     |
 | Yi-VL-6B*                  |   39.1    |     37.8     |
 | InfiMM-Zephyr-7B*          |   39.4    |     35.5     |
