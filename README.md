@@ -55,6 +55,7 @@ Please refer to our [eval](eval)
 | InternVL-Chat-V1.1*        |   39.1    |     35.3     |
 | SVIT*                      |   38.0    |     34.1     |
 | MiniCPM-V*                 |   37.2    |     34.1     |
+| MiniCPM-V-2*               |   37.1    |      -       |
 | Emu2-Chat*                 |   36.3    |     34.1     |
 | BLIP-2 FLAN-T5-XXL         |   35.4    |     34.0     |
 | InstructBLIP-T5-XXL        |   35.7    |     33.8     |
