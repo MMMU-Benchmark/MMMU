@@ -33,11 +33,12 @@ Please refer to our [eval](eval)
 | Gemini Ultra*              | **59.4**  |      -       |
 | Claude 3 Opus*             | **59.4**  |      -       |
 | GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
+| Reka Core*                 |   56.3    |      -       |
+| Reka Flash*                |   53.3    |      -       |
 | Claude 3 Sonnet*           |   53.1    |      -       |
 | HPT Pro*                   |   52.0    |      -       |
 | Qwen-VL-MAX*               |   51.4    |     46.8     |
 | InternVL-Chat-V1.2*        |   51.6    |     46.2     |
-| Reka Flash*                |   51.3    |      -       |
 | LLaVA-1.6-34B*             |   51.1    |     44.7     |
 | Claude 3 Haiku*            |   50.2    |      -       |
 | Adept Fuyu-Heavy*          |   48.3    |      -       |
@@ -46,6 +47,7 @@ Please refer to our [eval](eval)
 | Yi-VL-34B*                 |   45.9    |     41.6     |
 | Qwen-VL-PLUS*              |   45.2    |     40.8     |
 | HPT Air*                   |   44.0    |      -       |
+| Reka Edge*                 |   42.8    |      -       |
 | Marco-VL*                  |   41.2    |     40.4     |
 | OmniLMM-12B*               |   41.1    |     40.4     |
 | Weitu-VL-1.0-15B*          |     -     |     38.4     |
