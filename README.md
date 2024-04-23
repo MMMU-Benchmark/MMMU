@@ -25,59 +25,60 @@ Please refer to our [eval](eval)
  folder for more details.
 
 ## 🏆 Mini-Leaderboard
-| Model                      | Val (900) | Test (10.5K) |
-|----------------------------|:---------:|:------------:|
-| Expert (Best)              |   88.6    |      -       |
-| Expert (Medium)            |   82.6    |      -       |
-| Expert (Worst)             |   76.2    |      -       |
-| Gemini Ultra*              | **59.4**  |      -       |
-| Claude 3 Opus*             | **59.4**  |      -       |
-| GPT-4V(ision) (Playground) |   56.8    |   **55.7**   |
-| Reka Core*                 |   56.3    |      -       |
-| Reka Flash*                |   53.3    |      -       |
-| Claude 3 Sonnet*           |   53.1    |      -       |
-| HPT Pro*                   |   52.0    |      -       |
-| Qwen-VL-MAX*               |   51.4    |     46.8     |
-| InternVL-Chat-V1.2*        |   51.6    |     46.2     |
-| LLaVA-1.6-34B*             |   51.1    |     44.7     |
-| Claude 3 Haiku*            |   50.2    |      -       |
-| Adept Fuyu-Heavy*          |   48.3    |      -       |
-| Gemini Pro*                |   47.9    |      -       |
-| Marco-VL-Plus*             |   46.2    |     44.3     |
-| Yi-VL-34B*                 |   45.9    |     41.6     |
-| Qwen-VL-PLUS*              |   45.2    |     40.8     |
-| HPT Air*                   |   44.0    |      -       |
-| Reka Edge*                 |   42.8    |      -       |
-| Marco-VL*                  |   41.2    |     40.4     |
-| OmniLMM-12B*               |   41.1    |     40.4     |
-| Weitu-VL-1.0-15B*          |     -     |     38.4     |
-| InternLM-XComposer2-VL*    |   43.0    |     38.2     |
-| Yi-VL-6B*                  |   39.1    |     37.8     |
-| InfiMM-Zephyr-7B*          |   39.4    |     35.5     |
-| InternVL-Chat-V1.1*        |   39.1    |     35.3     |
-| SVIT*                      |   38.0    |     34.1     |
-| MiniCPM-V*                 |   37.2    |     34.1     |
-| MiniCPM-V-2*               |   37.1    |      -       |
-| Emu2-Chat*                 |   36.3    |     34.1     |
-| BLIP-2 FLAN-T5-XXL         |   35.4    |     34.0     |
-| InstructBLIP-T5-XXL        |   35.7    |     33.8     |
-| LLaVA-1.5-13B              |   36.4    |     33.6     |
-| Bunny-3B*                  |   38.2    |     33.0     |
-| Qwen-VL-7B-Chat            |   35.9    |     32.9     |
-| SPHINX*                    |   32.9    |     32.9     |
-| mPLUG-OWL2*                |   32.7    |     32.1     |
-| BLIP-2 FLAN-T5-XL          |   34.4    |     31.0     |
-| InstructBLIP-T5-XL         |   32.9    |     30.6     |
-| Gemini Nano2*              |   32.6    |      -       |
-| CogVLM                     |   32.1    |     30.1     |
-| Otter                      |   32.2    |     29.1     |
-| LLaMA-Adapter2-7B          |   29.8    |     27.7     |
-| MiniGPT4-Vicuna-13B        |   26.8    |     27.6     |
-| Adept Fuyu-8B              |   27.9    |     27.4     |
-| Kosmos2                    |   24.4    |     26.6     |
-| OpenFlamingo2-9B           |   28.7    |     26.3     |
-| Frequent Choice            |   22.1    |     23.9     |
-| Random Choice              |   26.8    |     25.8     |
+| Model                          | Val (900) | Test (10.5K) |
+|--------------------------------|:---------:|:------------:|
+| Expert (Best)                  |   88.6    |      -       |
+| Expert (Medium)                |   82.6    |      -       |
+| Expert (Worst)                 |   76.2    |      -       |
+| Gemini Ultra*                  | **59.4**  |      -       |
+| Claude 3 Opus*                 | **59.4**  |      -       |
+| GPT-4V(ision) (Playground)     |   56.8    |   **55.7**   |
+| Reka Core*                     |   56.3    |      -       |
+| SenseChat-Vision-0423-Preview* |   54.6    |     50.3     |
+| Reka Flash*                    |   53.3    |      -       |
+| Claude 3 Sonnet*               |   53.1    |      -       |
+| HPT Pro*                       |   52.0    |      -       |
+| Qwen-VL-MAX*                   |   51.4    |     46.8     |
+| InternVL-Chat-V1.2*            |   51.6    |     46.2     |
+| LLaVA-1.6-34B*                 |   51.1    |     44.7     |
+| Claude 3 Haiku*                |   50.2    |      -       |
+| Adept Fuyu-Heavy*              |   48.3    |      -       |
+| Gemini Pro*                    |   47.9    |      -       |
+| Marco-VL-Plus*                 |   46.2    |     44.3     |
+| Yi-VL-34B*                     |   45.9    |     41.6     |
+| Qwen-VL-PLUS*                  |   45.2    |     40.8     |
+| HPT Air*                       |   44.0    |      -       |
+| Reka Edge*                     |   42.8    |      -       |
+| Marco-VL*                      |   41.2    |     40.4     |
+| OmniLMM-12B*                   |   41.1    |     40.4     |
+| Weitu-VL-1.0-15B*              |     -     |     38.4     |
+| InternLM-XComposer2-VL*        |   43.0    |     38.2     |
+| Yi-VL-6B*                      |   39.1    |     37.8     |
+| InfiMM-Zephyr-7B*              |   39.4    |     35.5     |
+| InternVL-Chat-V1.1*            |   39.1    |     35.3     |
+| SVIT*                          |   38.0    |     34.1     |
+| MiniCPM-V*                     |   37.2    |     34.1     |
+| MiniCPM-V-2*                   |   37.1    |      -       |
+| Emu2-Chat*                     |   36.3    |     34.1     |
+| BLIP-2 FLAN-T5-XXL             |   35.4    |     34.0     |
+| InstructBLIP-T5-XXL            |   35.7    |     33.8     |
+| LLaVA-1.5-13B                  |   36.4    |     33.6     |
+| Bunny-3B*                      |   38.2    |     33.0     |
+| Qwen-VL-7B-Chat                |   35.9    |     32.9     |
+| SPHINX*                        |   32.9    |     32.9     |
+| mPLUG-OWL2*                    |   32.7    |     32.1     |
+| BLIP-2 FLAN-T5-XL              |   34.4    |     31.0     |
+| InstructBLIP-T5-XL             |   32.9    |     30.6     |
+| Gemini Nano2*                  |   32.6    |      -       |
+| CogVLM                         |   32.1    |     30.1     |
+| Otter                          |   32.2    |     29.1     |
+| LLaMA-Adapter2-7B              |   29.8    |     27.7     |
+| MiniGPT4-Vicuna-13B            |   26.8    |     27.6     |
+| Adept Fuyu-8B                  |   27.9    |     27.4     |
+| Kosmos2                        |   24.4    |     26.6     |
+| OpenFlamingo2-9B               |   28.7    |     26.3     |
+| Frequent Choice                |   22.1    |     23.9     |
+| Random Choice                  |   26.8    |     25.8     |
 
 *: results provided by the authors.
 
