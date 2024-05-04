@@ -38,6 +38,7 @@ Please refer to our [eval](eval)
 | Reka Flash*                    |   53.3    |      -       |
 | Claude 3 Sonnet*               |   53.1    |      -       |
 | HPT Pro*                       |   52.0    |      -       |
+| VILA1.5*                       |   51.9    |     46.9     |
 | Qwen-VL-MAX*                   |   51.4    |     46.8     |
 | InternVL-Chat-V1.2*            |   51.6    |     46.2     |
 | LLaVA-1.6-34B*                 |   51.1    |     44.7     |
