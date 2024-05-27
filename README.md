@@ -30,8 +30,9 @@ Please refer to our [eval](eval)
 | Expert (Best)                  |   88.6    |      -       |
 | Expert (Medium)                |   82.6    |      -       |
 | Expert (Worst)                 |   76.2    |      -       |
-| Gemini Ultra*                  | **59.4**  |      -       |
-| Claude 3 Opus*                 | **59.4**  |      -       |
+| GPT-4o*                        | **69.1**  |      -       |
+| Gemini Ultra*                  |   59.4    |      -       |
+| Claude 3 Opus*                 |   59.4    |      -       |
 | GPT-4V(ision) (Playground)     |   56.8    |   **55.7**   |
 | Reka Core*                     |   56.3    |      -       |
 | SenseChat-Vision-0423-Preview* |   54.6    |     50.3     |
