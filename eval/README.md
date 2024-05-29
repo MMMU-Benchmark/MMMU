@@ -108,7 +108,24 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 ##### Run Llava
 In case if you want to reproduce the results of some of the models, please go check run_llava.py as an example.
 
-By seeting up the env following the [llava official repo](https://github.com/haotian-liu/LLaVA) and installing `datasets` packages by huggingface, you can run llava viathe following command:
+By seeting up the env for llava via:
+Step 1:
+```
+git clone https://github.com/haotian-liu/LLaVA.git
+cd LLaVA
+```
+In Step 2:
+```
+conda create -n llava python=3.10 -y
+conda activate llava
+pip install --upgrade pip  # enable PEP 660 support
+git fetch --tags  
+git checkout tags/v1.1.3  # back to the version when running MMMU
+pip install -e .
+```
+
+The above will install llava (1.5 only) and corresponding correct transformers version when running MMMU.
+and installing `datasets` packages by huggingface, you can run llava viathe following command:
 
 ```
 CUDA_VISIBLE_DEVICES=0 nohup python run_llava.py \
