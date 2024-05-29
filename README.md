@@ -41,6 +41,7 @@ Please refer to our [eval](eval)
 | HPT Pro*                       |   52.0    |      -       |
 | VILA1.5*                       |   51.9    |     46.9     |
 | Qwen-VL-MAX*                   |   51.4    |     46.8     |
+| Skywork-VL*                    |   51.4    |     46.2     |
 | InternVL-Chat-V1.2*            |   51.6    |     46.2     |
 | LLaVA-1.6-34B*                 |   51.1    |     44.7     |
 | Claude 3 Haiku*                |   50.2    |      -       |
