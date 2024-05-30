@@ -106,7 +106,7 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 
 
 ##### Run Llava
-In case if you want to reproduce the results of some of the models, please go check run_llava.py as an example.
+In case if you want to reproduce the results of some models, please go check `run_llava.py` as an example.
 
 By seeting up the env for llava via following steps:
 
