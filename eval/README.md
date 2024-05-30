@@ -108,7 +108,8 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 ##### Run Llava
 In case if you want to reproduce the results of some of the models, please go check run_llava.py as an example.
 
-By seeting up the env for llava via:
+By seeting up the env for llava via following steps:
+
 Step 1:
 ```
 git clone https://github.com/haotian-liu/LLaVA.git
@@ -125,7 +126,7 @@ pip install -e .
 ```
 
 The above will install llava (1.5 only) and corresponding correct transformers version when running MMMU.
-and installing `datasets` packages by huggingface, you can run llava viathe following command:
+Then by installing `datasets` packages from huggingface (i.e., `pip install datasets`), you can run llava with the following command:
 
 ```
 CUDA_VISIBLE_DEVICES=0 nohup python run_llava.py \
