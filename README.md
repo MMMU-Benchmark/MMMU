@@ -31,10 +31,12 @@ Please refer to our [eval](eval)
 | Expert (Medium)                |   82.6    |      -       |
 | Expert (Worst)                 |   76.2    |      -       |
 | GPT-4o*                        | **69.1**  |      -       |
-| Gemini Ultra*                  |   59.4    |      -       |
+| Gemini 1.5 Pro*                |   59.4    |      -       |
+| Gemini 1.0 Ultra*              |   59.4    |      -       |
 | Claude 3 Opus*                 |   59.4    |      -       |
 | GPT-4V(ision) (Playground)     |   56.8    |   **55.7**   |
 | Reka Core*                     |   56.3    |      -       |
+| Gemini 1.5 Flash*              |   56.1    |      -       |
 | SenseChat-Vision-0423-Preview* |   54.6    |     50.3     |
 | Reka Flash*                    |   53.3    |      -       |
 | Claude 3 Sonnet*               |   53.1    |      -       |
@@ -46,7 +48,7 @@ Please refer to our [eval](eval)
 | LLaVA-1.6-34B*                 |   51.1    |     44.7     |
 | Claude 3 Haiku*                |   50.2    |      -       |
 | Adept Fuyu-Heavy*              |   48.3    |      -       |
-| Gemini Pro*                    |   47.9    |      -       |
+| Gemini 1.0 Pro*                |   47.9    |      -       |
 | Marco-VL-Plus*                 |   46.2    |     44.3     |
 | Yi-VL-34B*                     |   45.9    |     41.6     |
 | Qwen-VL-PLUS*                  |   45.2    |     40.8     |
