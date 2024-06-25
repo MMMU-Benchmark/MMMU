@@ -56,6 +56,8 @@ Please refer to our [eval](eval)
 | Reka Edge*                     |   42.8    |      -       |
 | Marco-VL*                      |   41.2    |     40.4     |
 | OmniLMM-12B*                   |   41.1    |     40.4     |
+| Bunny-8B*                      |   43.3    |     39.0     |
+| Bunny-4B*                      |   41.4    |     38.4     |
 | Weitu-VL-1.0-15B*              |     -     |     38.4     |
 | InternLM-XComposer2-VL*        |   43.0    |     38.2     |
 | Yi-VL-6B*                      |   39.1    |     37.8     |
