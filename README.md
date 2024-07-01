@@ -63,6 +63,7 @@ Please refer to our [eval](eval)
 | Yi-VL-6B*                      |   39.1    |     37.8     |
 | InfiMM-Zephyr-7B*              |   39.4    |     35.5     |
 | InternVL-Chat-V1.1*            |   39.1    |     35.3     |
+| Math-LLaVA-13B*                |   38.3    |     34.6     |
 | SVIT*                          |   38.0    |     34.1     |
 | MiniCPM-V*                     |   37.2    |     34.1     |
 | MiniCPM-V-2*                   |   37.1    |      -       |
