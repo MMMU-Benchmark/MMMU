@@ -31,10 +31,10 @@ Please refer to our [eval](eval)
 | Expert (Medium)                |   82.6    |      -       |
 | Expert (Worst)                 |   76.2    |      -       |
 | GPT-4o*                        | **69.1**  |      -       |
-| Gemini 1.5 Pro*                |   59.4    |      -       |
+| Gemini 1.5 Pro*                |   62.2    |      -       |
+| InternVL2-Pro*                 |   62.0    |   **55.7**   |
 | Gemini 1.0 Ultra*              |   59.4    |      -       |
 | Claude 3 Opus*                 |   59.4    |      -       |
-| InternVL2-Pro*                 |   58.9    |   **55.7**   |
 | GPT-4V(ision) (Playground)     |   56.8    |   **55.7**   |
 | Reka Core*                     |   56.3    |      -       |
 | Gemini 1.5 Flash*              |   56.1    |      -       |
