@@ -7,7 +7,8 @@
 This script is used to load a specified model and perform inference. Use the script as follows:
 
 ```bash
-python infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
+cd mmmu-pro
+python infer/infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
 ```
 
 - `[MODEL_NAME]`: The name of the model you want to use. Ensure that the model files are correctly placed in the specified directory.
@@ -29,6 +30,7 @@ After running this command, the script will load the `gpt-4o` model and perform 
 This script is used to evaluate the model inference results. Use the script as follows:
 
 ```bash
+cd mmmu-pro
 python evaluate.py
 ```
 
