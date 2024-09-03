@@ -8,16 +8,21 @@ import sys
 import json
 import sys
 from openai import OpenAI
+import base64
+from io import BytesIO
 import requests
 from concurrent.futures import ThreadPoolExecutor
+from datasets import load_dataset
 
 if len(sys.argv) == 3:
     MODEL = sys.argv[1]
     MODE = sys.argv[2]
+    SETTING = sys.argv[3]
 else:
-    print("Usage: python script.py [MODEL] [MODE], default: python infer_gpt.py gpt-4o-mini cot")
-    MODEL = 'gpt-4o-mini'
-    MODE = 'cot'
+    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_gpt.py gpt-4o cot standard")
+    MODEL = 'gpt-4o'
+    MODE = 'direct'
+    SETTING = 'vision'
     # sys.exit(1)
 
 API_KEY = 'your_api_key'
@@ -29,7 +34,7 @@ import yaml
 with open("prompts.yaml", "r") as file:
     prompt_config = yaml.safe_load(file)[MODE]
 
-import base64
+
 def replace_images_tokens(input_string):
     for i in range(1, 8):
         question_text = f"<image {i}>"
@@ -46,14 +51,9 @@ def parse_options(options):
 def construct_prompt(doc):
     question = doc["question"]
     # Weirdly, data["shuffled_options"] is a string in MMMU Huggingface dataset
-    if doc['type']=='Standard(4opts)':
-        parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
-    elif doc['type']=='Standard(10opts)':
-        parsed_options = parse_options(ast.literal_eval(str(doc["shuffled_options"])))
-    else:
-        print ('error')
+    parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
     # parsed_options already prepends a newline so no need to add space here
-    question = f"{question}\n{parsed_options}\n{prompt_config['Standard']}"
+    question = f"{question}\n{parsed_options}\n{prompt_config['standard']}"
     return question
 
 def mmmu_doc_to_text(doc):
@@ -61,23 +61,15 @@ def mmmu_doc_to_text(doc):
     return replace_images_tokens(question)
 
 def origin_mmmu_doc_to_visual(doc):
-    prompt = construct_prompt(doc)
-    image_tokens = re.findall(r"<image \d+>", prompt)
-    # Remove <> and  swap space as _
-    image_tokens = [image_token.strip("<>").replace(" ", "_") for image_token in image_tokens]
-    # 正常使用
     visual = []
-    for image_token in image_tokens:
-        path = "dir_to_mmmu_images" + doc[image_token]      #** change your image path here **
-        visual.append(path)
+    for i in range(1,8):
+        if not doc[f'image_{i}']:
+            break
+        visual.append(doc[f'image_{i}'])
     return visual
 
 def vision_mmmu_doc_to_visual(doc):
-    visual = []
-    # for image_token in image_tokens:
-    path = "dir_to_mmmu_pro_images" + doc['id'] + ".png"
-    visual.append(path)
-    return visual
+    return [doc['image']]
 
 def load_model(model_name="GPT4", base_url="https://api.01ww.xyz/v1", api_key="zhangge-test", model="gpt-4-turbo-preview"):
     model_components = {}
@@ -97,16 +89,31 @@ def request(prompt, timeout=120, max_tokens=128, base_url="https://api.01ww.xyz/
         stream=False, max_tokens=max_tokens, timeout=timeout)
     return response
 
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+# def encode_image(image_path):
+#     with open(image_path, "rb") as image_file:
+#         return base64.b64encode(image_file.read()).decode('utf-8')
+
+def encode_pil_image(pil_image):
+    # Create a byte stream object
+    buffered = BytesIO()
+    # Save the PIL image object as a byte stream in PNG format
+    pil_image.save(buffered, format="PNG")
+    # Get the byte stream data and perform Base64 encoding
+    img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
+    return img_str
 
 # Function to create interleaved content of texts and images
 def make_interleave_content(texts_or_image_paths):
     content = []
     for text_or_path in texts_or_image_paths:
-        if text_or_path.endswith(".jpeg") or text_or_path.endswith(".png"):
-            base64_image = encode_image(text_or_path)
+        if isinstance(text_or_path, str):
+            text_elem = {
+                "type": "text",
+                "text": text_or_path
+            }
+            content.append(text_elem)
+        else:
+            base64_image = encode_pil_image(text_or_path)
             image_elem = {
                 "type": "image_url",
                 "image_url": {
@@ -114,12 +121,6 @@ def make_interleave_content(texts_or_image_paths):
                 }
             }
             content.append(image_elem)
-        else:
-            text_elem = {
-                "type": "text",
-                "text": text_or_path
-            }
-            content.append(text_elem)
     return content
 
 # Function to send request with images and text
@@ -163,20 +164,16 @@ def infer(prompts, max_tokens=4096, use_vllm=False, **kwargs):
             response = request(prompts, base_url=base_url, api_key=api_key, model=model, model_name=model_name)["choices"][0]["message"]["content"]
     except Exception as e:
         response = {"error": str(e)}
-        print ("Images:", images)
     
     return response
 
 
 def process_prompt(data, model_components):
-    if data['type'] == 'Standard(4opts)':
+    if SETTING == 'standard':
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
-    elif data['type'] == 'Standard(10opts)':
-        prompt = mmmu_doc_to_text(data)
-        images = origin_mmmu_doc_to_visual(data)
-    elif data['type'] == 'Vision':
-        prompt = prompt_config['Vision']
+    elif SETTING == 'vision':
+        prompt = prompt_config['vision']
         images = vision_mmmu_doc_to_visual(data)
 
     return infer({"prompt": prompt, "images": images}, max_tokens=4096, **model_components), data
@@ -186,79 +183,56 @@ def run_and_save():
         with open(output_path, 'w', encoding='utf-8') as outfile:
             for output, data in results:
                 data['response'] = output
+                data = {k: v for k, v in data.items() if not k.startswith('image_')}
                 json.dump(data, outfile, ensure_ascii=False)
                 outfile.write('\n')
     
-    def retry_errors(results, model_components, part_name, output_path):
-        retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
-        no_change_count = 0
-        previous_retry_count = len(retry_data)
+    # def retry_errors(results, model_components, part_name, output_path):
+    #     retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
+    #     no_change_count = 0
+    #     previous_retry_count = len(retry_data)
         
-        while retry_data:
-            print(f"Retrying {len(retry_data)} failed prompts for {part_name}")
-            new_results = []
-            with ThreadPoolExecutor(max_workers=WORKERS) as executor:
-                futures = [executor.submit(process_prompt, data, model_components) for _, _, data in retry_data]
-                for future in tqdm(futures, desc=f"Retrying {part_name}"):
-                    result, data = future.result()
-                    new_results.append((result, data))
+    #     while retry_data:
+    #         print(f"Retrying {len(retry_data)} failed prompts for {part_name}")
+    #         new_results = []
+    #         with ThreadPoolExecutor(max_workers=WORKERS) as executor:
+    #             futures = [executor.submit(process_prompt, data, model_components) for _, _, data in retry_data]
+    #             for future in tqdm(futures, desc=f"Retrying {part_name}"):
+    #                 result, data = future.result()
+    #                 new_results.append((result, data))
 
-            # Update the results with the new results from the retry
-            for (index, _, _), (new_result, new_data) in zip(retry_data, new_results):
-                results[index] = (new_result, new_data)
+    #         # Update the results with the new results from the retry
+    #         for (index, _, _), (new_result, new_data) in zip(retry_data, new_results):
+    #             results[index] = (new_result, new_data)
             
-            retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
+    #         retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
 
-            # Save results after each retry attempt
-            save_results_to_file(results, output_path)
+    #         # Save results after each retry attempt
+    #         save_results_to_file(results, output_path)
 
-            # Check for no change in the number of retries
-            if len(retry_data) == previous_retry_count:
-                no_change_count += 1
-            else:
-                no_change_count = 0
+    #         # Check for no change in the number of retries
+    #         if len(retry_data) == previous_retry_count:
+    #             no_change_count += 1
+    #         else:
+    #             no_change_count = 0
             
-            if no_change_count >= 3:
-                print(f"No change in retry count for 3 consecutive attempts. Exiting retry loop for {part_name}.")
-                break
+    #         if no_change_count >= 3:
+    #             print(f"No change in retry count for 3 consecutive attempts. Exiting retry loop for {part_name}.")
+    #             break
 
-            previous_retry_count = len(retry_data)
+    #         previous_retry_count = len(retry_data)
         
-        return results
+    #     return results
 
-    dataset = []
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Standard(4opts)'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Standard(10opts)'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
-
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Vision'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
-
+    
+    # 加载指定的 Hugging Face 数据集和分片
+    dataset = load_dataset('MMMU/MMMU_Pro', SETTING, split='test')
     model_components = load_model(model_name='GPT4O-MINI', base_url="https://api.openai.com/v1", api_key=API_KEY, model=MODEL)
     
     def process_and_save_part(part_data, part_name, model_components):
         print(f"Begin processing {part_name}")
         results = []
-        output_path = f"./temp_output/{MODEL}_{MODE}_{part_name}.jsonl"
+        output_path = f"./output/{MODEL}_{part_name}_{MODE}.jsonl"
 
         if os.path.exists(output_path):
             with open(output_path, 'r', encoding='utf-8') as infile:
@@ -275,18 +249,12 @@ def run_and_save():
 
             save_results_to_file(results, output_path)
 
-        results = retry_errors(results, model_components, part_name, output_path)
+        # results = retry_errors(results, model_components, part_name, output_path)
 
         return output_path
 
-    mmmu_data = [data for data in dataset if data['type'] == 'Standard(4opts)']
-    origin_data = [data for data in dataset if data['type'] == 'Standard(10opts)']
-    vision_data = [data for data in dataset if data['type'] == 'Vision']
-
     temp_files = []
-    temp_files.append(process_and_save_part(mmmu_data, "Standard(4opts)", model_components))
-    temp_files.append(process_and_save_part(origin_data, "Standard(10opts)", model_components))
-    temp_files.append(process_and_save_part(vision_data, "Vision", model_components))
+    temp_files.append(process_and_save_part(dataset, SETTING, model_components))
 
 
 

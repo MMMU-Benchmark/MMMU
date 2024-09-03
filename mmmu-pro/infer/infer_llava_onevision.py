@@ -8,15 +8,17 @@ import ast
 from PIL import Image
 from tqdm import tqdm
 from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
+from datasets import load_dataset
 
 # Configuration
 if len(sys.argv) == 3:
     MODEL = sys.argv[1]
     MODE = sys.argv[2]
+    SETTING = sys.argv[3]
 else:
-    print("Usage: python script.py [MODEL] [MODE], default: python script.py llava-onevision-qwen2-7b-si-hf direct")
+    print("Usage: python script.py [MODEL] [MODE], default: python script.py llava-onevision-qwen2-7b-si-hf direct vision")
     MODEL = 'llava-onevision-qwen2-7b-si-hf'
-    MODE = 'direct'
+    SETTING = 'vision'
 
 MAX_RETRY = 5
 NUM = 1730
@@ -45,12 +47,7 @@ def parse_options(options):
 
 def construct_prompt(doc):
     question = doc["question"]
-    if doc['type']=='Standard(4opts)':
-        parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
-    elif doc['type']=='Standard(10opts)':
-        parsed_options = parse_options(ast.literal_eval(str(doc["shuffled_options"])))
-    else:
-        print ('error')
+    parsed_options = parse_options(ast.literal_eval(str(doc["shuffled_options"])))
     question = f"{question}\n{parsed_options}\n{prompt_config['Standard']}"
     return question
 
@@ -59,33 +56,22 @@ def mmmu_doc_to_text(doc):
     return replace_images_tokens(question)
 
 def origin_mmmu_doc_to_visual(doc):
-    prompt = construct_prompt(doc)
-    image_tokens = re.findall(r"<image \d+>", prompt)
-    image_tokens = [image_token.strip("<>").replace(" ", "_") for image_token in image_tokens]
     visual = []
-    for image_token in image_tokens:
-        path = "dir_to_mmmu_images" + doc[image_token]      #** change your image path here **
-        with Image.open(path) as image:
-            visual.append(image.convert("RGBA"))
+    for i in range(1,8):
+        if not doc[f'image_{i}']:
+            break
+        visual.append(doc[f'image_{i}'])
     return visual
 
 def vision_mmmu_doc_to_visual(doc):
-    visual = []
-    path = "dir_to_mmmu_pro_images" + doc['id'] + ".png"
-    with Image.open(path) as image:
-        visual.append(image.convert("RGBA"))
-    return visual
+    return [doc['image']]
 
 def process_prompt(data):
-    # prompt = mmmu_doc_to_text(data)
-    if data['type'] == 'Standard(4opts)':
+    if SETTING == 'standard':
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
-    elif data['type'] == 'Standard(10opts)':
-        prompt = mmmu_doc_to_text(data)
-        images = origin_mmmu_doc_to_visual(data)
-    elif data['type'] == 'Vision':
-        prompt = prompt_config['Vision']      
+    elif SETTING == 'vision':
+        prompt = prompt_config['vision']
         images = vision_mmmu_doc_to_visual(data)
         
     return (prompt, images)
@@ -94,39 +80,16 @@ def save_results_to_file(results, output_path):
     with open(output_path, 'w', encoding='utf-8') as outfile:
         for output, data in results:
             data['response'] = output
+            data = {k: v for k, v in data.items() if not k.startswith('image_')}
             json.dump(data, outfile, ensure_ascii=False)
             outfile.write('\n')
 
 def run_and_save():
-    dataset = []
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Standard(4opts)'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Standard(10opts)'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
-    with open("./mix_data.jsonl", 'r', encoding='utf-8') as infile:
-        for i, data in enumerate(infile):
-            if i >= NUM:
-                break
-            item = json.loads(data)
-            item['type'] = 'Vision'
-            item['prompt_mode'] = MODE
-            dataset.append(item)
+    dataset = load_dataset('MMMU/MMMU_Pro', SETTING, split='test')
 
     def process_and_save_part(part_data, part_name):
         print(f"Begin processing {part_name}")
-        output_path = f"./temp_output/{MODEL}_{MODE}_{part_name}.jsonl"
+        output_path = f"./output/{MODEL}_{part_name}_{MODE}.jsonl"
         results = []
         if os.path.exists(output_path):
             print(f"Loaded existing results for {part_name}")
@@ -182,15 +145,8 @@ def run_and_save():
             save_results_to_file(zip(results, part_data), output_path)
         return output_path
 
-    mmmu_data = [data for data in dataset if data['type'] == 'Standard(4opts)']
-    origin_data = [data for data in dataset if data['type'] == 'Standard(10opts)']
-    vision_data = [data for data in dataset if data['type'] == 'Vision']
-
     temp_files = []
-    temp_files.append(process_and_save_part(mmmu_data, "Standard(4opts)"))
-    temp_files.append(process_and_save_part(origin_data, "Standard(10opts)"))
-    temp_files.append(process_and_save_part(vision_data, "Vision"))
-
+    temp_files.append(process_and_save_part(dataset, SETTING))
 
 def main():
     run_and_save()

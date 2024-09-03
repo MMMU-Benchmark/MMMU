@@ -15,26 +15,16 @@ def mmmu_process_results(results):
     pred = results['response']
     if isinstance(pred, dict):
         pred = ''
-    if results['type'] == 'Standard(4opts)':
-        index2ans, all_choices = get_multi_choice_info(ast.literal_eval(str(results["options"])))
-        parsed_pred = parse_multi_choice_response(pred, all_choices, index2ans)
-   
-        id = results["id"]
-        if parsed_pred == results["answer"]:
-            if_right = True
-        else:
-            if_right = False
+
+    index2ans, all_choices = get_multi_choice_info(ast.literal_eval(str(results["options"])))
+    parsed_pred = parse_multi_choice_response(pred, all_choices, index2ans)
+
+    id = results["id"]
+    if parsed_pred == results["answer"]:
+        if_right = True
     else:
-        index2ans, all_choices = get_multi_choice_info(ast.literal_eval(str(results["shuffled_options"])))
-        parsed_pred = parse_multi_choice_response(pred, all_choices, index2ans)
-   
-        id = results["id"]
-        if parsed_pred == results["shuffled_options_answer"]:
-            if_right = True
-        else:
-            if_right = False
-    
-    results['subdomain'] = extract_subset_name(results["id"])
+        if_right = False
+
     results['pred_indexs'] = parsed_pred
     results['if_right'] = if_right
     
@@ -545,67 +535,48 @@ def generate_results_table(file_paths):
     return df
 
 
-def check_and_merge_jsonl_files(input_dir, output_dir):
-    file_paths = []
-    settings = {
-        'Standard(4opts)': 1730,
-        'Standard(10opts)': 1730,
-        'Vision': 1730,
-    }
-    methods = ["cot", "direct"]
+NUM = 1730
 
-    pattern = re.compile(r"(?P<model_name>.+)_(?P<method>cot|direct)_(?P<setting>Standard\(4opts\)|Standard\(10opts\)|Vision)\.jsonl")
-    
-    model_files = {}
-
+def check_files(input_dir):
+    pattern = re.compile(r"(?P<model_name>.+)_(?P<setting>standard|vision)_(?P<method>cot|direct)\.jsonl")
     for file_name in os.listdir(input_dir):
         match = pattern.match(file_name)
         if match:
             model_name = match.group("model_name")
             method = match.group("method")
             setting = match.group("setting")
+            file_path = os.path.join(input_dir, file_name)
+            
+            with open(file_path, 'r', encoding='utf-8') as infile:
+                results = [json.loads(data) for data in infile]
 
-            if model_name not in model_files:
-                model_files[model_name] = {m: {s: None for s in settings} for m in methods}
-
-            model_files[model_name][method][setting] = file_name
-
-    for model_name, method_files in model_files.items():
-        for method in methods:
-            if None in method_files[method].values():
-                print(f"Model {model_name} is missing files for the method {method}.")
+            if len(results) != NUM:
+                print(f"Error: {file_path} has {len(results)} results, expected {NUM}")
                 continue
 
-            for setting, file_name in method_files[method].items():
-                file_path = os.path.join(input_dir, file_name)
-                with open(file_path, 'r') as f:
-                    lines = f.readlines()
-                    if len(lines) != settings[setting]:
-                        print(f"File {file_name} for model {model_name} has incorrect line count: {len(lines)}.")
-                        continue
+            processed_results = []
+            true_nums = 0
+            false_nums = 0
 
-            output_file_path = os.path.join(output_dir, f"{model_name}_{method}.jsonl")
-            with open(output_file_path, 'w') as outfile:
-                for setting in ['Standard(4opts)', 'Standard(10opts)', 'Vision']:
-                    file_path = os.path.join(input_dir, method_files[method][setting])
-                    with open(file_path, 'r') as infile:
-                        outfile.writelines(infile.readlines())
-            
-            print(f"Files for model {model_name} and method {method} have been successfully merged into {output_file_path}.")
-            file_paths.append(output_file_path)
+            for i, result in enumerate(results):
+                new_data = mmmu_process_results(result)
+                processed_results.append(new_data)
+                
+                if new_data['if_right']:
+                    true_nums += 1
+                else:
+                    false_nums += 1
 
-    df = generate_results_table(file_paths)
-    output_excel_path = os.path.join(output_dir, "results_summary.xlsx")
-    df.to_excel(output_excel_path, index=True)
-    print(f"Summary Excel file saved at: {output_excel_path}")
+            # Calculate and output the accuracy
+            total = true_nums + false_nums
+            acc = true_nums / total * 100 if total > 0 else 0
+            print(f"Model: {model_name:<15} Method: {method:<8} Setting: {setting:<8} - Accuracy: {acc:>6.2f}%")
 
-
-
-
+            # Write the processed results back to the file
+            with open(file_path, 'w', encoding='utf-8') as outfile:
+                for item in processed_results:
+                    outfile.write(json.dumps(item) + '\n')
 
 if __name__ == "__main__":
-    input_directory = "./temp_output"  # Replace with your input directory
-    output_directory = "./output"  # Replace with your output directory
-    check_and_merge_jsonl_files(input_directory, output_directory)
-
-
+    input_directory = "./output"  # Replace with your input directory
+    check_files(input_directory)
