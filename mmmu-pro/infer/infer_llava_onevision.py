@@ -97,7 +97,7 @@ def run_and_save():
             for idx, data in enumerate(tqdm(part_data, desc=f"Processing {part_name}"), start=1):
                 prompt, images = process_prompt(data)
                 conversation_content = [{"type": "text", "text": prompt}]
-                # 添加图像内容
+                # add picture content
                 for _ in images:
                     conversation_content.append({"type": "image"})
 
