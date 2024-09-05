@@ -30,7 +30,7 @@ python infer/infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
 **Example**:
 
 ```bash
-python infer/infer_gpt.py gpt-4o cot vision
+python infer/infer_gpt.py gpt-4o cot vision standard
 ```
 
 This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting. The inference results will be saved to the `./output` directory.
