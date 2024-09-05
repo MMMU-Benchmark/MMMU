@@ -46,9 +46,7 @@ def parse_options(options):
 
 def construct_prompt(doc):
     question = doc["question"]
-    # Weirdly, data["shuffled_options"] is a string in MMMU Huggingface dataset
     parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
-    # parsed_options already prepends a newline so no need to add space here
     question = f"{question}\n{parsed_options}\n{prompt_config['standard']}"
     return question
 
