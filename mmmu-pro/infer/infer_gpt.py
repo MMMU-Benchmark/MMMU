@@ -187,45 +187,6 @@ def run_and_save():
                 json.dump(data, outfile, ensure_ascii=False)
                 outfile.write('\n')
     
-    # def retry_errors(results, model_components, part_name, output_path):
-    #     retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
-    #     no_change_count = 0
-    #     previous_retry_count = len(retry_data)
-        
-    #     while retry_data:
-    #         print(f"Retrying {len(retry_data)} failed prompts for {part_name}")
-    #         new_results = []
-    #         with ThreadPoolExecutor(max_workers=WORKERS) as executor:
-    #             futures = [executor.submit(process_prompt, data, model_components) for _, _, data in retry_data]
-    #             for future in tqdm(futures, desc=f"Retrying {part_name}"):
-    #                 result, data = future.result()
-    #                 new_results.append((result, data))
-
-    #         # Update the results with the new results from the retry
-    #         for (index, _, _), (new_result, new_data) in zip(retry_data, new_results):
-    #             results[index] = (new_result, new_data)
-            
-    #         retry_data = [(index, result, data) for index, (result, data) in enumerate(results) if isinstance(result, dict) and 'error' in result]
-
-    #         # Save results after each retry attempt
-    #         save_results_to_file(results, output_path)
-
-    #         # Check for no change in the number of retries
-    #         if len(retry_data) == previous_retry_count:
-    #             no_change_count += 1
-    #         else:
-    #             no_change_count = 0
-            
-    #         if no_change_count >= 3:
-    #             print(f"No change in retry count for 3 consecutive attempts. Exiting retry loop for {part_name}.")
-    #             break
-
-    #         previous_retry_count = len(retry_data)
-        
-    #     return results
-
-    
-    # 加载指定的 Hugging Face 数据集和分片
     dataset = load_dataset('MMMU/MMMU_Pro', SETTING, split='test')
     model_components = load_model(model_name='GPT4O-MINI', base_url="https://api.openai.com/v1", api_key=API_KEY, model=MODEL)
     
@@ -249,7 +210,6 @@ def run_and_save():
 
             save_results_to_file(results, output_path)
 
-        # results = retry_errors(results, model_components, part_name, output_path)
 
         return output_path
 
