@@ -69,7 +69,6 @@ def parse_options(options):
 def construct_prompt(doc):
     question = doc["question"]
     parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
-    # parsed_options already prepends a newline so no need to add space here
     question = f"{question}\n{parsed_options}\n{prompt_config['standard']}"
     return question
 
@@ -128,10 +127,8 @@ def process_prompt(data, model):
     try:
         response = request_with_images_gemini(texts_or_image_paths, model)
     except Exception as e:
-        # print(f"Error occurred: {response.candidate.safety_ratings}")
         response = {"error": str(e)}
         print (f"Error occurred: {e}")
-        # response = {"error": response.candidate.safety_ratings}
     return response, data
 
 def run_and_save():
