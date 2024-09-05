@@ -47,8 +47,8 @@ def parse_options(options):
 
 def construct_prompt(doc):
     question = doc["question"]
-    parsed_options = parse_options(ast.literal_eval(str(doc["shuffled_options"])))
-    question = f"{question}\n{parsed_options}\n{prompt_config['Standard']}"
+    parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
+    question = f"{question}\n{parsed_options}\n{prompt_config['standard']}"
     return question
 
 def mmmu_doc_to_text(doc):
