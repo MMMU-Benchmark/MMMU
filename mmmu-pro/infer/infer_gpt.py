@@ -50,9 +50,7 @@ def parse_options(options):
 
 def construct_prompt(doc):
     question = doc["question"]
-    # Weirdly, data["shuffled_options"] is a string in MMMU Huggingface dataset
     parsed_options = parse_options(ast.literal_eval(str(doc["options"])))
-    # parsed_options already prepends a newline so no need to add space here
     question = f"{question}\n{parsed_options}\n{prompt_config['standard']}"
     return question
 
@@ -88,10 +86,6 @@ def request(prompt, timeout=120, max_tokens=128, base_url="https://api.01ww.xyz/
          + [{"role": "user", "content": prompt}],
         stream=False, max_tokens=max_tokens, timeout=timeout)
     return response
-
-# def encode_image(image_path):
-#     with open(image_path, "rb") as image_file:
-#         return base64.b64encode(image_file.read()).decode('utf-8')
 
 def encode_pil_image(pil_image):
     # Create a byte stream object
