@@ -1,42 +1,55 @@
 # MMMU-Pro
 
+## Overview
+
+This folder contains inference scripts for the [MMMU-Pro](https://huggingface.co/datasets/MMMU/MMMU_Pro) dataset. 
+1. `infer_xxx.py`: For model inference
+2. `evaluate.py`: For evaluating inference results
+
+Make sure to configure the necessary model and data files before use.
+
 ## Script Descriptions
 
-### 1. Model Inference Script `infer_xxx.py`
+### 1. Model Inference Script: `infer_xxx.py`
 
-This script is used to load a specified model and perform inference. Use the script as follows:
+This script loads a specified model and performs inference. To run the script, use the following steps:
 
 ```bash
 cd mmmu-pro
 python infer/infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
 ```
 
-- `[MODEL_NAME]`: The name of the model you want to use. Ensure that the model files are correctly placed in the specified directory.
-- `[MODE]`: Specifies the prompt mode. Can be either `cot` (chain of thought) or `direct`. Use `cot` to require the model to think through the problem step-by-step, or `direct` to prompt the model for a straightforward answer.
-- `[SETTING]`: Specifies the setting for the inference task. Can be either:
-  - `standard`: Standard format of augumented mmmu
-  - `vision`: Screenshot or photo form of augumented mmmu
+- **`[MODEL_NAME]`**: Specify the model's name (e.g., `gpt-4o`). Ensure the corresponding model files are available in the required directory.
+- **`[MODE]`**: Choose the prompt mode:
+  - `cot` (Chain of Thought): The model processes the problem step-by-step.
+  - `direct`: The model directly provides the answer.
+- **`[SETTING]`**: Select the inference task setting:
+  - `standard`: Uses the standard format of augmented MMMU.
+  - `vision`: Uses a screenshot or photo form of augmented MMMU.
 
-Example:
+**Example**:
 
 ```bash
 python infer/infer_gpt.py gpt-4o cot vision
 ```
 
-After running this command, the script will load the `gpt-4o` model and perform the inference task in chain-of-thought mode with the `vision` setting. The output results will be saved to the `./output` directory.
+This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting. The inference results will be saved to the `./output` directory.
 
-### 2. Evaluation Script `evaluate.py`
+### 2. Evaluation Script: `evaluate.py`
 
-This script is used to evaluate the model inference results. Use the script as follows:
+This script evaluates the results generated from the inference step. To run the evaluation, use the following command:
 
 ```bash
 cd mmmu-pro
 python evaluate.py
 ```
 
-After running this command, the script will read the inference results file from the `./output` directory and perform the evaluation. The evaluation report will be displayed in the console and saved to the same location.
+Once executed, the script will:
+- Load the inference results from the `./output` directory.
+- Generate and display the evaluation report in the console.
+- Save the evaluation report to the `./output` directory.
 
-### Additional Information
+## Additional Information
 
-- Ensure that the model and data files are correctly configured before running the scripts.
-- If you need to adjust the script parameters, modify the relevant configuration sections within the script files directly.
+- Make sure the model and data files are properly configured before running the scripts.
+- To adjust parameters, edit the relevant sections in the script files as needed.
