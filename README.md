@@ -72,13 +72,10 @@ Should you encounter any data samples potentially breaching the copyright or lic
   year={2024},
 }
 
-@misc{yue2024mmmupro,
-      title={MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark}, 
-      author={Xiang Yue and Tianyu Zheng and Yuansheng Ni and Yubo Wang and Kai Zhang and Shengbang Tong and Yuxuan Sun and Botao Yu and Ge Zhang and Huan Sun and Yu Su and Wenhu Chen and Graham Neubig},
-      year={2024},
-      eprint={2409.02813},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2409.02813}, 
+@article{yue2024mmmu,
+  title={MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark},
+  author={Yue, Xiang and Zheng, Tianyu and Ni, Yuansheng and Wang, Yubo and Zhang, Kai and Tong, Shengbang and Sun, Yuxuan and Yin, Ming and Yu, Botao and Zhang, Ge and others},
+  journal={arXiv preprint arXiv:2409.02813},
+  year={2024}
 }
 ```
