@@ -18,6 +18,7 @@ if len(sys.argv) == 3:
 else:
     print("Usage: python script.py [MODEL] [MODE], default: python script.py llava-onevision-qwen2-7b-si-hf direct vision")
     MODEL = 'llava-onevision-qwen2-7b-si-hf'
+    MODE = 'direct'
     SETTING = 'vision'
 
 MAX_RETRY = 5
