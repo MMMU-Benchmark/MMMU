@@ -69,7 +69,7 @@ def origin_mmmu_doc_to_visual(doc):
 def vision_mmmu_doc_to_visual(doc):
     return [doc['image']]
 
-def load_model(model_name="GPT4", base_url="https://api.01ww.xyz/v1", api_key="zhangge-test", model="gpt-4-turbo-preview"):
+def load_model(model_name="GPT4", base_url="", api_key="", model="gpt-4-turbo-preview"):
     model_components = {}
     model_components['model_name'] = model_name
     model_components['model'] = model
@@ -77,7 +77,7 @@ def load_model(model_name="GPT4", base_url="https://api.01ww.xyz/v1", api_key="z
     model_components['api_key'] = api_key
     return model_components
 
-def request(prompt, timeout=120, max_tokens=128, base_url="https://api.01ww.xyz/v1", api_key="zhangge-test", model="gpt-4-turbo-preview", model_name=None):
+def request(prompt, timeout=120, max_tokens=128, base_url="", api_key="", model="gpt-4-turbo-preview", model_name=None):
     client = OpenAI(base_url=base_url, api_key=api_key)
     include_system = False
     response = client.chat.completions.create(
