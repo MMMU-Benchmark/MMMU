@@ -24,16 +24,17 @@ python infer/infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
   - `cot` (Chain of Thought): The model processes the problem step-by-step.
   - `direct`: The model directly provides the answer.
 - **`[SETTING]`**: Select the inference task setting:
-  - `standard`: Uses the standard format of augmented MMMU.
+  - `standard(10 options)`: Uses the standard format of augmented MMMU with ten options.
+  - `standard(4 options)`: Uses the standard format of augmented MMMU with four options.
   - `vision`: Uses a screenshot or photo form of augmented MMMU.
 
 **Example**:
 
 ```bash
-python infer/infer_gpt.py gpt-4o cot vision standard
+python infer/infer_gpt.py gpt-4o cot vision
 ```
 
-This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting and uses the `standard` format of augmented MMMU. The inference results will be saved to the `./output` directory.
+This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting of augmented MMMU. The inference results will be saved to the `./output` directory.
 
 ### 2. Evaluation Script: `evaluate.py`
 

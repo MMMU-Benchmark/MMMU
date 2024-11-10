@@ -18,10 +18,10 @@ if len(sys.argv) == 3:
     MODE = sys.argv[2]
     SETTING = sys.argv[3]
 else:
-    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_lmdeploy.py InternVL2-8B direct standard")
+    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_lmdeploy.py InternVL2-8B direct vision")
     MODEL = 'InternVL2-8B'
     MODE = 'direct'
-    SETTING = 'standard'
+    SETTING = 'vision'
     # sys.exit(1)
 
 MAX_API_RETRY = 5
@@ -66,7 +66,7 @@ def vision_mmmu_doc_to_visual(doc):
     return [doc['image']]
 
 def process_prompt(data):
-    if SETTING == 'standard':
+    if 'standard' in SETTING:
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
     elif SETTING == 'vision':

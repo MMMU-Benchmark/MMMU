@@ -19,7 +19,7 @@ if len(sys.argv) == 3:
     MODE = sys.argv[2]
     SETTING = sys.argv[3]
 else:
-    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_gpt.py gpt-4o cot standard")
+    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_gpt.py gpt-4o direct vision")
     MODEL = 'gpt-4o'
     MODE = 'direct'
     SETTING = 'vision'
@@ -83,7 +83,7 @@ def request(prompt, timeout=120, max_tokens=128, base_url="", api_key="", model=
     response = client.chat.completions.create(
         model=model,
         messages = [{"role": "system", "content": "You're a useful assistant."}] * include_system \
-         + [{"role": "user", "content": prompt}],
+        + [{"role": "user", "content": prompt}],
         stream=False, max_tokens=max_tokens, timeout=timeout)
     return response
 
@@ -163,7 +163,7 @@ def infer(prompts, max_tokens=4096, use_vllm=False, **kwargs):
 
 
 def process_prompt(data, model_components):
-    if SETTING == 'standard':
+    if 'standard' in SETTING:
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
     elif SETTING == 'vision':
