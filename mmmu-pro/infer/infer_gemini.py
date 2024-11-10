@@ -38,10 +38,10 @@ if len(sys.argv) == 3:
     MODE = sys.argv[2]
     SETTING = sys.argv[3]
 else:
-    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_gemini.py gemini-1.5-pro-latest direct standard")
+    print("Usage: python script.py [MODEL] [MODE] [SETTING], default: python infer_gemini.py gemini-1.5-pro-latest direct vision")
     MODEL = 'gemini-1.5-pro-latest'
     MODE = 'direct'
-    SETTING = 'standard'
+    SETTING = 'vision'
     # sys.exit(1)
 API_KEY = 'your_api_key'
 WORKERS = 5
@@ -116,7 +116,7 @@ def request_with_images_gemini(texts_or_image_paths, model):
     return response_text
 
 def process_prompt(data, model):
-    if SETTING == 'standard':
+    if 'standard' in SETTING:
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
     elif SETTING == 'vision':

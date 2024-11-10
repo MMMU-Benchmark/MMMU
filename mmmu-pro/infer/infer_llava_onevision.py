@@ -68,7 +68,7 @@ def vision_mmmu_doc_to_visual(doc):
     return [doc['image']]
 
 def process_prompt(data):
-    if SETTING == 'standard':
+    if 'standard' in SETTING:
         prompt = mmmu_doc_to_text(data)
         images = origin_mmmu_doc_to_visual(data)
     elif SETTING == 'vision':
