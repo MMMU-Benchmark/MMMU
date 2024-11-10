@@ -31,10 +31,10 @@ python infer/infer_xxx.py [MODEL_NAME] [MODE] [SETTING]
 **Example**:
 
 ```bash
-python infer/infer_gpt.py gpt-4o cot vision standard
+python infer/infer_gpt.py gpt-4o cot vision
 ```
 
-This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting and uses the `standard(10 options)` format of augmented MMMU. The inference results will be saved to the `./output` directory.
+This example runs the `gpt-4o` model in chain-of-thought (`cot`) mode using the `vision` setting of augmented MMMU. The inference results will be saved to the `./output` directory.
 
 ### 2. Evaluation Script: `evaluate.py`
 
