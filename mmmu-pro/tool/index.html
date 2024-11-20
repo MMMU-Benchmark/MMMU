@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Interface</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .question-container {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: inherit;
+            border-radius: 5px;
+        }
+        .question-title { margin-top: 20px; font-weight: 600; margin-bottom: 15px; font-size: 24px; }
+        .options { list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; }
+        .options li { margin-bottom: 10px; display: flex; align-items: center; }
+        .options input[type='radio'] { margin-right: 10px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="questions-wrapper">
+            {% if not request.args.get('screenshot') %}
+            <nav>
+                <ul class="pagination" style="margin-top: 10px;">
+                    <li class="page-item {{ 'disabled' if current_page == 1 }}">
+                        <a class="page-link" href="{% if current_page > 1 %}/?page={{ current_page - 1 }}{% endif %}">Previous</a>
+                    </li>
+                    <li class="page-item {{ 'disabled' if current_page == total_pages }}">
+                        <a class="page-link" href="{% if current_page < total_pages %}/?page={{ current_page + 1 }}{% endif %}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
+
+            <div class="question-container">
+                <p class="mathjax-content"><strong>No. {{ range(1, 31) | random }}:</strong> {{ item['question_slot'] | replace("\n", "<br>") | safe }}</p>
+                {% for img in item["question_imgs"] %}
+                    <img src="{{ url_for('static', filename=img) }}" alt="Question Image" width="300">
+                {% endfor %}
+                <p><strong>Options:</strong></p>
+                <ul class="options row">
+                    {% for option in item['options'] %}
+                        <li class="mathjax-content col-6">({{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }}){{ option | safe }}
+                            {% for img in item["options_imgs"][loop.index0] %}
+                                <img src="{{ url_for('static', filename=img) }}" alt="Option Image" width="100">
+                            {% endfor %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let fonts = ["Arial",'Nanum Pen Script', "Verdana", 'Bradley Hand', "Georgia", "Courier New", "Palatino Linotype", "Savoye LET", "Tahoma", "Brush Script MT"];
+        // let fontSizes = ["16px", "18px", "20px", "22px", "24px", "26px", "28px", "30px", "32px", "34px"];
+        let fontSizes = ["16px", "18px", "20px"];
+        let backgrounds = [
+            "url('{{ url_for('static', filename='background_images/background1.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background2.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background3.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background4.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background5.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background6.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background7.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background8.jpg') }}')",
+            "url('{{ url_for('static', filename='background_images/background9.jpg') }}')",
+            "#ffffff", "#f4f4f4", "#e0e0e0", "#d3d3d3", "#c0c0c0", "#a9a9a9", "#ffe6e6", "#e6ffea", "#e6f3ff", "#fff4e6", "#f9e6ff"];
+        let currentFontIndex;
+        let currentFontSizeIndex;
+        let currentBackgroundIndex;
+    
+        function loadSettings() {
+            currentFontIndex = Math.floor(Math.random() * fonts.length);
+            currentFontSizeIndex = Math.floor(Math.random() * fontSizes.length);
+            currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
+        }
+    
+        function saveSettings() {
+            localStorage.setItem('fontIndex', currentFontIndex);
+            localStorage.setItem('fontSizeIndex', currentFontSizeIndex);
+            localStorage.setItem('backgroundIndex', currentBackgroundIndex);
+        }
+    
+        function updateStyle() {
+            let bodyStyles = `
+                font-family: ${fonts[currentFontIndex]};
+                font-size: ${fontSizes[currentFontSizeIndex]};
+            `;
+            if (backgrounds[currentBackgroundIndex].startsWith("url")) {
+                bodyStyles += `
+                    background-image: ${backgrounds[currentBackgroundIndex]};
+                    background-size: cover;
+                    background-position: top center;
+                    background-repeat: no-repeat;
+                    padding-top: 100px;
+                    background-origin: padding-box;
+                    background-clip: padding-box;
+                `;
+            } else {
+                bodyStyles += `
+                    background-color: ${backgrounds[currentBackgroundIndex]};
+                `;
+            }
+            document.getElementById('dynamic-style').innerHTML = `
+                body {
+                    ${bodyStyles}
+                }
+            `;
+        }
+        $(document).ready(function() {
+            // Add style tag
+            if (!document.getElementById('dynamic-style')) {
+                const styleElement = document.createElement('style');
+                styleElement.id = 'dynamic-style';
+                document.head.appendChild(styleElement);
+            }
+            
+            // Load random settings and apply immediately
+            loadSettings();
+            updateStyle();
+            
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        });
+    </script>
+</body>
+</html>
