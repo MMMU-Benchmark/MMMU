@@ -14,7 +14,7 @@ This tool is designed to assist the open-source community in generating datasets
 3. **Run the Script**:
    ```bash
    cd tool
-   python tool.py
+   python screenshot_generator.py
    ```
 
    After running the script, images will be saved sequentially in the `output` folder located in the same directory.
