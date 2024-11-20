@@ -1,4 +1,4 @@
-# MMMU-Pro Data Tool
+# Screenshot Generator
 
 This tool is designed to assist the open-source community in generating datasets similar to the MMMU-Pro benchmark. The goal is to advance research in the unification of modalities within multimodal models.
 
