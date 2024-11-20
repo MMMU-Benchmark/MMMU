@@ -7,9 +7,9 @@ This tool is designed to assist the open-source community in generating datasets
 1. **Prepare Your Data**: Before running the script, ensure your data is ready and placed in the `data.jsonl` file within the `tool` directory. This JSONL file should contain the following keys:
    - `question`: The question text, which can include image slots in the format `<image x>`, where `x` is the image index.
    - `options`: The answer options, which can also include image slots in the format `<image x>`, where `x` is the image index.
-   - `image_x`: Represents the path to images appearing in the question, where `x` is the index.
+   - `image_x`: Represents the path to images appearing in the question, where `x` is the index. The path should be a relative path under the static directory.
 
-2. **Set Up Chromedriver**: In the `tool.py` file, ensure you set the path to your `chromedriver` at line 112.
+2. **Set Up Chromedriver**: In the `tool.py` file, ensure you set the path to your `chromedriver` at line `112`.
 
 3. **Run the Script**:
    ```bash
