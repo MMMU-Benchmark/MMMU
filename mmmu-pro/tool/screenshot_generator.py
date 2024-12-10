@@ -2,47 +2,28 @@ from flask import Flask, render_template, request, redirect
 import json
 import re
 import os
-import struct
-import base64
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
 import threading
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from tqdm import tqdm
 
 # Global base path
 GLOBAL_BASE_PATH = "./"
+BASE_PATH = os.path.join(GLOBAL_BASE_PATH)
+ORIGINAL_JSONL_FILE_PATH = os.path.join(BASE_PATH, "data.jsonl")
+BACKGROUND_IMAGES_PATH = "static/background_images"
 
-def guess_what(f):
-    f_rounded = round(f, 2)
-    byte_representation = struct.pack('f', f_rounded)
-    encoded = base64.b64encode(byte_representation)
-    return encoded.decode('utf-8')
-
-def bingo(encoded_str):
-    decoded_bytes = base64.b64decode(encoded_str)
-    decoded_float = struct.unpack('f', decoded_bytes)[0]
-    return decoded_float
+app = Flask(__name__, static_folder="static", template_folder="./")
 
 def process_latex(response: str) -> str:
     response = re.sub(r'\\\(|\\\)', r'$', response)
     response = response.replace("\u2061", "").replace("\u200b", "")
     response = response.replace("frac{", "\\frac{").replace("left(", "\\left(").replace("right)", "\\right)")
     return response
-
-def process_latex1(text):
-    inline_pattern = r"\\([^\s]+?)\\"
-    text = re.sub(inline_pattern, r"\(\1\)", text)
-    block_pattern = r"\\\[([^\]]+?)\\\]"
-    text = re.sub(block_pattern, r"$$\1$$", text)
-    return text
-
-BASE_PATH = os.path.join(GLOBAL_BASE_PATH)
-ORIGINAL_JSONL_FILE_PATH = os.path.join(BASE_PATH, "data.jsonl")
-BACKGROUND_IMAGES_PATH = "static/background_images"
-
-app = Flask(__name__, static_folder="static", template_folder="./")
 
 def get_option_value(answer, options):
     chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -70,16 +51,6 @@ def load_data_updated():
                 print(idx)
             if "check" not in item:
                 item["check"] = False
-            if "topic difficulty" not in item:
-                item["topic difficulty"] = "Not Specified"
-            if "img_type" not in item or item["img_type"] == "Figure" or item["img_type"] == "Mixed":
-                item["img_type"] = ["Not Specified"]
-            if "Remark" not in item:
-                item["Remark"] = ""
-            if "key" not in item:
-                item["key"] = guess_what(0)
-            if "need_reprediction" not in item:
-                item["need_reprediction"] = "False"
 
             item["question_imgs"] = extract_images_from_text(item["question"])
             item["question_slot"] = replace_images_with_placeholder(item["question"])
@@ -103,30 +74,69 @@ def load_data_updated():
 
 global_data = load_data_updated()
 
-def take_screenshots(output_dir):
-    # Set up Selenium with headless Chrome
+def take_single_screenshot(page, output_dir):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    service = Service('/usr/local/bin/chromedriver')  # Replace path to your chromedriver
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
-    # Ensure the output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    service = Service('../chromedriver-win64/chromedriver.exe')
+    thread_driver = webdriver.Chrome(service=service, options=chrome_options)
+    
+    try:
+        thread_driver.get(f'http://localhost:5002/?page={page}&screenshot=true')
+        time.sleep(1)
+        page_width = thread_driver.execute_script("return document.body.scrollWidth") 
+        page_height = thread_driver.execute_script("""
+            return Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
+        """) 
+        thread_driver.set_window_size(page_width, page_height)
 
-    # Iterate over all pages and take screenshots
-    for page in range(1, len(global_data) + 1):
-        driver.get(f'http://localhost:5002/?page={page}&screenshot=true')
-        time.sleep(2)  # Wait for the page to load
         screenshot_path = os.path.join(output_dir, f'page_{page}.png')
-        driver.save_screenshot(screenshot_path)
-        print(f'Screenshot saved to {screenshot_path}')
+        thread_driver.save_screenshot(screenshot_path)
+        # print(f'Screenshot saved to {screenshot_path}')
+        return page
+    except Exception as e:
+        print(f'Error taking screenshot for page {page}: {e}')
+        return None
+    finally:
+        thread_driver.quit()
 
-    driver.quit()
+def take_screenshots(output_dir, max_workers):
+    os.makedirs(output_dir, exist_ok=True)
+    total_pages = len(global_data)
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = []
+        for page in range(1, total_pages + 1):
+            future = executor.submit(take_single_screenshot, page, output_dir)
+            futures.append(future)
+        
+        try:
+            with tqdm(total=total_pages, desc="Taking screenshots") as pbar:
+                for future in as_completed(futures):
+                    result = future.result()
+                    if result:
+                        pbar.update(1)
+        except KeyboardInterrupt:
+            print("\nCancelling remaining tasks...")
+    
+    return True
 
 def run_flask_app():
-    app.run(debug=True, host='0.0.0.0', port=5002, use_reloader=False)
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.disabled = True
+    with open(os.devnull, 'w') as f:
+        sys.stdout = f
+        app.run(host='0.0.0.0', port=5002, debug=False, use_reloader=False)
 
 @app.route('/')
 def index():
@@ -134,23 +144,14 @@ def index():
     page = request.args.get('page', unchecked_page, type=int)
     total_pages = len(global_data)
     item = global_data[page-1] if 0 < page <= total_pages else None
-    if not item:
-        print(1)
     return render_template("index.html", item=item, current_page=page, total_pages=total_pages)
 
-@app.route('/edit/<pageNumber>', methods=['POST'])
-def edit(pageNumber):
-    print ('OK')
-    return redirect(f'/')
-
 if __name__ == '__main__':
-    # Start the Flask app in a separate thread
-    flask_thread = threading.Thread(target=run_flask_app)
+
+    flask_thread = threading.Thread(target=run_flask_app, daemon=True)
     flask_thread.start()
 
-    # Wait for a short period to ensure the server is up
-    time.sleep(5)  # Adjust this delay as needed
+    time.sleep(5)
 
-    # Take screenshots
-    print('Begin taking screenshots')
-    take_screenshots('./output')  # Replace with your desired output directory
+    completed = take_screenshots('./output', max_workers=20)
+    os._exit(0)
