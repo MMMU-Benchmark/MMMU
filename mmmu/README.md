@@ -23,7 +23,7 @@ Then run eval_only with:
 python main_eval_only.py --output_path ./example_outputs/llava1.5_13b/total_val_output.json
 ```
 
-Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/eval/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
+Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
 
 
 ## Parse and Evaluation
@@ -76,7 +76,7 @@ Each `output.json`` has a list of dict containing instances for evaluation ().
 ```
 python main_parse_and_eval.py --path ./example_outputs/llava1.5_13b --subject ALL # all subject
 
-# OR you can sepecify one subject for the evaluation
+# OR you can specify one subject for the evaluation
 
 python main_parse_and_eval.py --path ./example_outputs/llava1.5_13b --subject elec # short name for Electronics. use --help for all short names
 
@@ -108,7 +108,7 @@ python print_results.py --path ./example_outputs/llava1.5_13b
 ##### Run Llava
 In case if you want to reproduce the results of some models, please go check `run_llava.py` as an example.
 
-By seeting up the env for llava via following steps:
+By setting up the env for llava via following steps:
 
 Step 1:
 ```
