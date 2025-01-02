@@ -129,7 +129,9 @@ def request_with_images(texts_or_image_paths, timeout=60, max_tokens=300, base_u
         "messages": [
             {
                 "role": "system",
-                "content": "You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture.",
+                "content": "You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture."
+            },
+            {
                 "role": "user",
                 "content": make_interleave_content(texts_or_image_paths)
             }
