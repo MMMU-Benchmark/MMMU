@@ -34,12 +34,14 @@ with open("prompts.yaml", "r") as file:
     prompt_config = yaml.safe_load(file)[MODE]
 
 def replace_images_tokens(input_string):
+    image_count = 0
     for i in range(1, 8):
         question_text = f"<image {i}>"
         query_text = "[image]"
         if question_text in input_string:
             input_string = input_string.replace(question_text, query_text)
-    return input_string
+            image_count += 1
+    return input_string, image_count
 
 def parse_options(options):
     option_letters = [chr(ord("A") + i) for i in range(len(options))]
@@ -56,11 +58,9 @@ def mmmu_doc_to_text(doc):
     question = construct_prompt(doc)
     return replace_images_tokens(question)
 
-def origin_mmmu_doc_to_visual(doc):
+def origin_mmmu_doc_to_visual(doc, image_count):
     visual = []
-    for i in range(1,8):
-        if not doc[f'image_{i}']:
-            break
+    for i in range(1,image_count+1):
         visual.append(doc[f'image_{i}'])
     return visual
 
@@ -69,8 +69,8 @@ def vision_mmmu_doc_to_visual(doc):
 
 def process_prompt(data):
     if 'standard' in SETTING:
-        prompt = mmmu_doc_to_text(data)
-        images = origin_mmmu_doc_to_visual(data)
+        prompt, image_count = mmmu_doc_to_text(data)
+        images = origin_mmmu_doc_to_visual(data, image_count)
     elif SETTING == 'vision':
         prompt = prompt_config['vision']
         images = vision_mmmu_doc_to_visual(data)
