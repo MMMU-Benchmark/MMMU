@@ -36,14 +36,9 @@ with open("prompts.yaml", "r") as file:
 
 
 def replace_images_tokens(input_string):
-    image_count = 0
-    for i in range(1, 8):
-        question_text = f"<image {i}>"
-        query_text = "<image>"
-        if question_text in input_string:
-            input_string = input_string.replace(question_text, query_text)
-            image_count += 1
-    return input_string, image_count
+    image_order = [int(num) for num in re.findall(r'<image\s+(\d+)>', input_string)]
+    input_string = re.sub(r'<image\s+\d+>', '<image>', input_string)
+    return input_string, image_order
 
 def parse_options(options):
     option_letters = [chr(ord("A") + i) for i in range(len(options))]
@@ -60,10 +55,10 @@ def mmmu_doc_to_text(doc):
     question = construct_prompt(doc)
     return replace_images_tokens(question)
 
-def origin_mmmu_doc_to_visual(doc, image_count):
+def origin_mmmu_doc_to_visual(doc, image_order):
     visual = []
-    for i in range(1,image_count+1):
-        visual.append(doc[f'image_{i}'])
+    for idx in image_order:
+        visual.append(doc[f'image_{idx}'])
     return visual
 
 def vision_mmmu_doc_to_visual(doc):
@@ -165,9 +160,9 @@ def infer(prompts, max_tokens=4096, use_vllm=False, **kwargs):
 
 
 def process_prompt(data, model_components):
-    if 'standard' in SETTING:
-        prompt, image_count = mmmu_doc_to_text(data)
-        images = origin_mmmu_doc_to_visual(data, image_count)
+    if 'standard (10 options)' in SETTING:
+        prompt, image_order = mmmu_doc_to_text(data)
+        images = origin_mmmu_doc_to_visual(data, image_order)
     elif SETTING == 'vision':
         prompt = prompt_config['vision']
         images = vision_mmmu_doc_to_visual(data)
