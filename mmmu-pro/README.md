@@ -54,3 +54,16 @@ Once executed, the script will:
 
 - Make sure the model and data files are properly configured before running the scripts.
 - To adjust parameters, edit the relevant sections in the script files as needed.
+
+## ⚠️ Important Note in Standard (10 options) Setting
+
+In the **Standard (10 options)** setting, the multiple-choice options are **shuffled**, meaning the order of `<image i>` tokens in the options list may not follow the sequential order of `image_i` keys in the dataset. For example, a question may have the following option order:
+
+options: [’<image 2>’, ‘<image 1>’, ‘<image 4>’, ‘<image 3>’]
+
+This can sometimes lead to confusion, but **please note that each `<image i>` token always corresponds to its respective `image_i` key in the dataset**. The inference script correctly handles this mapping when constructing the input. You can refer to the following functions:
+
+- **[`replace_images_tokens(input_string)`](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu-pro/infer/infer_gemini.py#L56)**: Replaces `<image i>` tokens while recording their original order.
+- **[`origin_mmmu_doc_to_visual(doc, image_order)`](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu-pro/infer/infer_gemini.py#L76)**: Appends images based on the recorded order.
+
+For a more detailed discussion, please see the related [GitHub issue](https://github.com/MMMU-Benchmark/MMMU/issues/70).
