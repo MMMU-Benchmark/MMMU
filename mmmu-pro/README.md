@@ -66,4 +66,4 @@ This can sometimes lead to confusion, but **please note that each `<image i>` to
 - **[`replace_images_tokens(input_string)`](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu-pro/infer/infer_gemini.py#L56)**: Replaces `<image i>` tokens while recording their original order.
 - **[`origin_mmmu_doc_to_visual(doc, image_order)`](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu-pro/infer/infer_gemini.py#L76)**: Appends images based on the recorded order.
 
-For a more detailed discussion, please see the related [GitHub issue](https://github.com/MMMU-Benchmark/MMMU/issues/70).
+For a more detailed discussion, please see the related **[GitHub issue](https://github.com/MMMU-Benchmark/MMMU/issues/70)**.
