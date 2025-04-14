@@ -64,7 +64,7 @@ def run_inference_on_dataset(dataset, model, processor):
     for data in tqdm(dataset, desc=f"Processing {dataset.info.dataset_name}"):
         prompt, images = process_prompt(data, dataset.info.config_name)
 
-        # Construct conversation with one (initial)utterance
+        # Construct conversation with one (initial) utterance
         utterance = {
             "role": "user",
             "content": [{"type": "text", "text": prompt}],
