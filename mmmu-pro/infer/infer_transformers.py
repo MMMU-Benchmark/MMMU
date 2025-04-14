@@ -126,16 +126,16 @@ def run_inference_on_dataset(dataset, model, processor):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_repo_id", type=str, default="MMMU/MMMU_Pro")
+    parser.add_argument("--model", type=str, default="HuggingFaceTB/SmolVLM2-2.2B-Instruct")
+    parser.add_argument("--mode", type=str, default="direct", choices=["direct", "cot"])
     parser.add_argument(
         "--dataset_variant",
         type=str,
         default="vision",
-        choices=["vision", "standard (10 options)"],
+        choices=["vision", "standard (10 options)", "standard (4 options)"],
     )
     parser.add_argument("--dataset_split", type=str, default="test")
-    parser.add_argument("--model", type=str, default="HuggingFaceTB/SmolVLM2-2.2B-Instruct")
-    parser.add_argument("--mode", type=str, default="direct", choices=["direct", "cot"])
+    parser.add_argument("--dataset_repo_id", type=str, default="MMMU/MMMU_Pro")
     parser.add_argument("--debug", type=bool, default=False)
     args = parser.parse_args()
 
