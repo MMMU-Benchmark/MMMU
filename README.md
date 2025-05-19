@@ -72,10 +72,10 @@ Should you encounter any data samples potentially breaching the copyright or lic
   year={2024},
 }
 
-@article{yue2024mmmu,
+@inproceedings{yue2025mmmu-pro,
   title={MMMU-Pro: A More Robust Multi-discipline Multimodal Understanding Benchmark},
   author={Xiang Yue and Tianyu Zheng and Yuansheng Ni and Yubo Wang and Kai Zhang and Shengbang Tong and Yuxuan Sun and Botao Yu and Ge Zhang and Huan Sun and Yu Su and Wenhu Chen and Graham Neubig},
-  journal={arXiv preprint arXiv:2409.02813},
-  year={2024}
+  booktitle={Proceedings of ACL},
+  year={2025}
 }
 ```
