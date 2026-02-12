@@ -6,9 +6,10 @@ This repo contains the evaluation code for the paper "[MMMU-Pro: A More Robust M
 
 ## 🔔News
 
+- **‼️[2026-02-12] We have released the answers for the MMMU test set! You can now evaluate your models on the test set locally! 🎉**
 - **🔥[2024-09-05] Introducing [MMMU-Pro](https://arxiv.org/abs/2409.02813), a robust version of MMMU benchmark for multimodal AI evaluation! 🚀**
 - **🚀[2024-01-31]: We added Human Expert performance on the [Leaderboard](https://mmmu-benchmark.github.io/#leaderboard)!🌟**
-- **🔥[2023-12-04]: Our evaluation server for test set is now availble on [EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview). We welcome all submissions and look forward to your participation! 😆**
+- **🔥[2023-12-04]: ~~Our evaluation server for test set is now availble on [EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview).~~ We welcome all submissions and look forward to your participation! 😆**
 
 ## Introduction
 
@@ -46,11 +47,13 @@ Please refer to our evaluation folders for detailed information on evaluating wi
 
 🎯 **MMMU Evaluation**
 
-- **We have released a full suite comprising 150 development samples and 900 validation samples. However, the 10,500 test questions are available without their answers.**
+- **We have released a full suite comprising 150 development samples, 900 validation samples, and 10,500 test samples.**
 - Use the **development set** for few-shot/in-context learning.
 - Use the **validation set** for debugging models, selecting hyperparameters, and quick evaluations.
 
-The answers and explanations for the test set questions are withheld. You can submit your model's predictions for the **test set** on **[EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview)**.
+The answers and explanations for the test set questions are now released. You can evaluate your models locally using `answer_dict_test.json` with the same pipeline as for the validation set.
+
+~~The answers and explanations for the test set questions are withheld. You can submit your model's predictions for the **test set** on **[EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview)**.~~
 
 ## Disclaimers
 The guidelines for the annotators emphasized strict compliance with copyright and licensing rules from the initial data source, specifically avoiding materials from websites that forbid copying and redistribution. 

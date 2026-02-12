@@ -23,6 +23,11 @@ Then run eval_only with:
 python main_eval_only.py --output_path ./example_outputs/llava1.5_13b/total_val_output.json
 ```
 
+If you want to evaluate on the test set, simply specify your test output and test answer file with `--output_path` and `--answer_path`, e.g.:
+```
+python main_eval_only.py --output_path <your_test_output.json> --answer_path ./answer_dict_test.json
+```
+
 Please refer to [example output](https://github.com/MMMU-Benchmark/MMMU/blob/main/mmmu/example_outputs/llava1.5_13b/total_val_output.json) for a detailed prediction file form.
 
 
