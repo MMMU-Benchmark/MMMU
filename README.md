@@ -6,6 +6,7 @@ This repo contains the evaluation code for the paper "[MMMU-Pro: A More Robust M
 
 ## 🔔News
 
+- **[2026-07-28]** Added [EvalScope](https://github.com/modelscope/evalscope) as a community-maintained third-party evaluation workflow for MMMU. See the [EvalScope MMMU guide](https://evalscope.readthedocs.io/en/latest/benchmarks/mmmu.html).
 - **‼️[2026-02-12] We have released the answers for the MMMU test set! You can now evaluate your models on the test set locally! 🎉**
 - **🔥[2024-09-05] Introducing [MMMU-Pro](https://arxiv.org/abs/2409.02813), a robust version of MMMU benchmark for multimodal AI evaluation! 🚀**
 - **🚀[2024-01-31]: We added Human Expert performance on the [Leaderboard](https://mmmu-benchmark.github.io/#leaderboard)!🌟**
@@ -52,6 +53,28 @@ Please refer to our evaluation folders for detailed information on evaluating wi
 - Use the **validation set** for debugging models, selecting hyperparameters, and quick evaluations.
 
 The answers and explanations for the test set questions are now released. You can evaluate your models locally using `answer_dict_test.json` with the same pipeline as for the validation set.
+
+
+### Community-maintained EvalScope integration
+
+[EvalScope](https://github.com/modelscope/evalscope) provides a community-maintained third-party workflow for running MMMU against OpenAI-compatible model endpoints, with saved predictions, scores, and reports.
+
+```bash
+evalscope eval \
+  --model YOUR_MODEL \
+  --api-url OPENAI_API_COMPAT_URL \
+  --api-key EMPTY_TOKEN \
+  --datasets mmmu \
+  --limit 10
+```
+
+Integration notes:
+
+- Dataset and split: EvalScope uses the ModelScope mirror `AI-ModelScope/MMMU`; the default evaluation split is `validation` with 900 examples across 30 subjects.
+- Prompting and scoring: EvalScope uses 0-shot prompting, supports both multiple-choice and open-ended MMMU questions, and reports accuracy through EvalScope's standard report format.
+- Leaderboard-equivalent results: use the official MMMU evaluation pipeline and released test-set answer files for official local test-set evaluation.
+
+EvalScope guide: https://evalscope.readthedocs.io/en/latest/benchmarks/mmmu.html
 
 ~~The answers and explanations for the test set questions are withheld. You can submit your model's predictions for the **test set** on **[EvalAI](https://eval.ai/web/challenges/challenge-page/2179/overview)**.~~
 
