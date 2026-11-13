@@ -10,6 +10,8 @@ import sys
 import pandas as pd
 import sys
 
+random.seed(42)
+
 
 def mmmu_process_results(results):
     pred = results['response']
